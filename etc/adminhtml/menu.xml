@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Ainnomix_EntityManager::entities" title="Entity Manager" translate="title" module="Ainnomix_EntityManager" sortOrder="60" dependsOnModule="Ainnomix_EntityManager" resource="Ainnomix_EntityManager::entities"/>
-        <add id="Ainnomix_EntityManager::manage_entities" title="Manage Entities" translate="title" module="Ainnomix_EntityManager" sortOrder="10" parent="Ainnomix_EntityManager::entities" action="ainnomix_entity_manager/type/index" resource="Ainnomix_EntityManager::manage_entities"/>
+        <add id="Ainnomix_EntityTypeManager::entity_type_manager" title="Entity Type Manager" translate="title" module="Ainnomix_EntityTypeManager" sortOrder="60" dependsOnModule="Ainnomix_EntityTypeManager" resource="Ainnomix_EntityTypeManager::entity_type_manager"/>
+        <add id="Ainnomix_EntityTypeManager::manage_entity_types" title="Manage Entity Types" translate="title" module="Ainnomix_EntityTypeManager" sortOrder="10" parent="Ainnomix_EntityTypeManager::entity_type_manager" action="entity_type_manager/entity_type/index" resource="Ainnomix_EntityTypeManager::manage_entity_types"/>
     </menu>
 </config>

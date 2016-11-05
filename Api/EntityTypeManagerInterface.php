@@ -1,9 +1,9 @@
 <?php
 
-namespace Ainnomix\EntityManager\Api;
+namespace Ainnomix\EntityTypeManager\Api;
 
 interface EntityTypeManagerInterface
 {
 
-    public function getEntityType($entityTypeCode);
+    public function get($entityTypeCode);
 }

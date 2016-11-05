@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityManager\Block\Adminhtml\EntityType\Edit\Button;
+namespace Ainnomix\EntityTypeManager\Block\Adminhtml\EntityType\Edit\Button;
 
 use Magento\Ui\Component\Control\Container;
 
@@ -17,7 +17,7 @@ class Save extends Generic
                     'buttonAdapter' => [
                         'actions' => [
                             [
-                                'targetName' => 'custom_entities_form.custom_entities_form',
+                                'targetName' => 'entity_type_form.entity_type_form',
                                 'actionName' => 'save',
                                 'params' => [
                                     false
@@ -47,7 +47,7 @@ class Save extends Generic
                     'buttonAdapter' => [
                         'actions' => [
                             [
-                                'targetName' => 'custom_entities_form.custom_entities_form',
+                                'targetName' => 'entity_type_form.entity_type_form',
                                 'actionName' => 'save',
                                 'params' => [
                                     true,
@@ -70,7 +70,7 @@ class Save extends Generic
                     'buttonAdapter' => [
                         'actions' => [
                             [
-                                'targetName' => 'custom_entities_form.custom_entities_form',
+                                'targetName' => 'entity_type_form.entity_type_form',
                                 'actionName' => 'save',
                                 'params' => [
                                     true

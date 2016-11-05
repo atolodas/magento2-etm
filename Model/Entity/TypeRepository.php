@@ -1,26 +1,26 @@
 <?php
 
-namespace Ainnomix\EntityManager\Model\Entity\Type;
+namespace Ainnomix\EntityTypeManager\Model\Entity;
 
-
-use Ainnomix\EntityManager\Api\Data\EntityTypeInterface;
-use Ainnomix\EntityManager\Api\EntityTypeRepositoryInterface;
+use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
+use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
 use Magento\Eav\Model\Entity\TypeFactory;
 use Magento\Eav\Model\ResourceModel\Entity\Type;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 
-class EntityTypeRepository implements EntityTypeRepositoryInterface
+class TypeRepository implements EntityTypeRepositoryInterface
 {
 
     /**
      * @var Type
      */
-    private $entityTypeResource;
+    protected $entityTypeResource;
+    
     /**
      * @var TypeFactory
      */
-    private $entityTypeFactory;
+    protected $entityTypeFactory;
 
     public function __construct(
         Type $entityTypeResource,

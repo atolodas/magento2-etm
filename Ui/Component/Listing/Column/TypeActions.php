@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityManager\Ui\Component\Listing\Column;
+namespace Ainnomix\EntityTypeManager\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
@@ -35,7 +35,7 @@ class TypeActions extends Column
             foreach ($dataSource['data']['items'] as &$item) {
                 $item[$this->getData('name')]['edit'] = [
                     'href' => $this->urlBuilder->getUrl(
-                        'ainnomix_entity_manager/type/edit',
+                        'entity_type_manager/entity_type/edit',
                         ['id' => $item['entity_type_id']]
                     ),
                     'label' => __('Edit'),

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityManager\Block\Adminhtml\EntityType\Edit\Button;
+namespace Ainnomix\EntityTypeManager\Block\Adminhtml\EntityType\Edit\Button;
 
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\UiComponent\Context;

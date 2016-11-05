@@ -2,6 +2,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Ainnomix_EntityManager',
+    'Ainnomix_EntityTypeManager',
     __DIR__
 );

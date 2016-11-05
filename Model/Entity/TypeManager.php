@@ -1,24 +1,24 @@
 <?php
 
-namespace Ainnomix\EntityManager\Model\Entity\Type;
+namespace Ainnomix\EntityTypeManager\Model\Entity;
 
-
-use Ainnomix\EntityManager\Api\EntityTypeManagerInterface;
-use Ainnomix\EntityManager\Api\EntityTypeRepositoryInterface;
+use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
+use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
 use Magento\Eav\Model\Entity\TypeFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
 
-class EntityTypeManager implements EntityTypeManagerInterface
+class TypeManager implements EntityTypeManagerInterface
 {
 
     /**
      * @var EntityTypeRepositoryInterface
      */
-    private $entityTypeRepository;
+    protected $entityTypeRepository;
+
     /**
      * @var TypeFactory
      */
-    private $entityTypeFactory;
+    protected $entityTypeFactory;
 
     public function __construct(
         EntityTypeRepositoryInterface $entityTypeRepository,
@@ -28,7 +28,7 @@ class EntityTypeManager implements EntityTypeManagerInterface
         $this->entityTypeFactory = $entityTypeFactory;
     }
     
-    public function getEntityType($entityTypeCode)
+    public function get($entityTypeCode)
     {
         try {
             if (is_int($entityTypeCode)) {

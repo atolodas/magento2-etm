@@ -3,23 +3,23 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">custom_entities_listing.custom_entities_listing_data_source</item>
-            <item name="deps" xsi:type="string">custom_entities_listing.custom_entities_listing_data_source</item>
+            <item name="provider" xsi:type="string">entity_types_listing.entity_types_listing_data_source</item>
+            <item name="deps" xsi:type="string">entity_types_listing.entity_types_listing_data_source</item>
         </item>
         <item name="spinner" xsi:type="string">entities_columns</item>
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add New Entity</item>
+                <item name="label" xsi:type="string" translate="true">Add New Entity Type</item>
                 <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">ainnomix_entity_manager/type/new</item>
+                <item name="url" xsi:type="string">entity_type_manager/entity_type/new</item>
             </item>
         </item>
     </argument>
-    <dataSource name="custom_entities_listing_data_source">
+    <dataSource name="entity_types_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
-            <argument name="name" xsi:type="string">custom_entities_listing_data_source</argument>
+            <argument name="name" xsi:type="string">entity_types_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_type_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
@@ -50,7 +50,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="ainnomix_entity_manager/type/massDelete"/>
+                        <item name="url" xsi:type="url" path="entity_type_manager/type/massDelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Delete items</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure to delete selected entity types?</item>
@@ -90,7 +90,7 @@
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="Ainnomix\EntityManager\Ui\Component\Listing\Column\TypeActions">
+        <actionsColumn name="actions" class="Ainnomix\EntityTypeManager\Ui\Component\Listing\Column\TypeActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">entity_type_id</item>

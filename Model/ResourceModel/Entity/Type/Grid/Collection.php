@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityManager\Model\ResourceModel\Entity\Type\Grid;
+namespace Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\Grid;
 
 use Magento\Customer\Ui\Component\DataProvider\Document;
 use Magento\Framework\Data\Collection\Db\FetchStrategyInterface as FetchStrategy;
