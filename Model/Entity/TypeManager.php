@@ -4,7 +4,7 @@ namespace Ainnomix\EntityTypeManager\Model\Entity;
 
 use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
 use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
-use Magento\Eav\Model\Entity\TypeFactory;
+use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterfaceFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 class TypeManager implements EntityTypeManagerInterface
@@ -16,13 +16,13 @@ class TypeManager implements EntityTypeManagerInterface
     protected $entityTypeRepository;
 
     /**
-     * @var TypeFactory
+     * @var EntityTypeInterfaceFactory
      */
     protected $entityTypeFactory;
 
     public function __construct(
         EntityTypeRepositoryInterface $entityTypeRepository,
-        TypeFactory $entityTypeFactory
+        EntityTypeInterfaceFactory $entityTypeFactory
     ) {
         $this->entityTypeRepository = $entityTypeRepository;
         $this->entityTypeFactory = $entityTypeFactory;

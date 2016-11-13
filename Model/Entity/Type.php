@@ -2,10 +2,14 @@
 
 namespace Ainnomix\EntityTypeManager\Model\Entity;
 
-use Ainnomix\EntityManager\Api\Data\EntityTypeInterface;
-use Magento\Eav\Model\Entity\Type as EntityType;
+use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
+use Magento\Eav\Model\Entity\Type as EavEntityType;
 
-class Type extends EntityType implements EntityTypeInterface
+class Type extends EavEntityType implements EntityTypeInterface
 {
 
+    protected function _construct()
+    {
+        $this->_init('Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type');
+    }
 }

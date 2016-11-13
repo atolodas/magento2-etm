@@ -3,9 +3,9 @@
 namespace Ainnomix\EntityTypeManager\Model\Entity;
 
 use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
+use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterfaceFactory;
 use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
-use Magento\Eav\Model\Entity\TypeFactory;
-use Magento\Eav\Model\ResourceModel\Entity\Type;
+use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type as ResourceModel;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 
@@ -13,18 +13,18 @@ class TypeRepository implements EntityTypeRepositoryInterface
 {
 
     /**
-     * @var Type
+     * @var ResourceModel
      */
     protected $entityTypeResource;
     
     /**
-     * @var TypeFactory
+     * @var EntityTypeInterfaceFactory
      */
     protected $entityTypeFactory;
 
     public function __construct(
-        Type $entityTypeResource,
-        TypeFactory $entityTypeFactory
+        ResourceModel $entityTypeResource,
+        EntityTypeInterfaceFactory $entityTypeFactory
     ) {
         $this->entityTypeResource = $entityTypeResource;
         $this->entityTypeFactory = $entityTypeFactory;
@@ -56,7 +56,7 @@ class TypeRepository implements EntityTypeRepositoryInterface
 
     public function save(EntityTypeInterface $entityType)
     {
-        // TODO: Implement save() method.
+        $this->entityTypeResource->save($entityType);
     }
 
     public function getList(SearchCriteriaInterface $searchCriteria)
