@@ -12,6 +12,20 @@ class Type extends EavEntityType
         return $this->getTable('etm_eav_entity_type');
     }
 
+    protected function _getLoadSelect($field, $value, $object)
+    {
+        $field = $this->getConnection()->quoteIdentifier(sprintf('%s.%s', $this->getMainTable(), $field));
+        $select = $this->getConnection()->select()->from($this->getMainTable())->where($field . '=?', $value);
+
+        $select->joinInner(
+            ['etm' => $this->getAdditionalEntityTypeTable()],
+            sprintf('%s.entity_type_id = etm.entity_type_id', $this->getMainTable()),
+            ['entity_type_name']
+        );
+
+        return $select;
+    }
+
     protected function _afterSave(AbstractModel $object)
     {
         $data = $this->_prepareDataForTable($object, $this->getAdditionalEntityTypeTable());
@@ -22,25 +36,25 @@ class Type extends EavEntityType
         return parent::_afterSave($object);
     }
 
-    protected function _afterLoad(AbstractModel $object)
-    {
-        $connection = $this->getConnection();
-        $select = $this->getAdditionalDataLoadSelect($this->getIdFieldName(), $object->getData($this->getIdFieldName()));
-        $data = $connection->fetchRow($select);
-
-        if ($data) {
-            $object->addData($data);
-        }
-
-        return parent::_afterLoad($object);
-    }
-
-    protected function getAdditionalDataLoadSelect($field, $value)
-    {
-        $field = $this->getConnection()
-            ->quoteIdentifier(sprintf('%s.%s', $this->getAdditionalEntityTypeTable(), $field));
-        $select = $this->getConnection()
-            ->select()->from($this->getAdditionalEntityTypeTable())->where($field . '=?', $value);
-        return $select;
-    }
+//    protected function _afterLoad(AbstractModel $object)
+//    {
+//        $connection = $this->getConnection();
+//        $select = $this->getAdditionalDataLoadSelect($this->getIdFieldName(), $object->getData($this->getIdFieldName()));
+//        $data = $connection->fetchRow($select);
+//
+//        if ($data) {
+//            $object->addData($data);
+//        }
+//
+//        return parent::_afterLoad($object);
+//    }
+//
+//    protected function getAdditionalDataLoadSelect($field, $value)
+//    {
+//        $field = $this->getConnection()
+//            ->quoteIdentifier(sprintf('%s.%s', $this->getAdditionalEntityTypeTable(), $field));
+//        $select = $this->getConnection()
+//            ->select()->from($this->getAdditionalEntityTypeTable())->where($field . '=?', $value);
+//        return $select;
+//    }
 }
