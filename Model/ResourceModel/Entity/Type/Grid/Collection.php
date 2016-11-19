@@ -35,12 +35,11 @@ class Collection extends SearchResult
     protected function _beforeLoad()
     {
         $this->join(
-            ['etm' => $this->getTable('etm_eav_entity_type')],
-            'main_table.entity_type_id = etm.entity_type_id',
-            ['entity_type_name']
+            ['etm' => $this->getResource()->getAdditionalEntityTypeTable()],
+            sprintf('main_table.%s = etm.%s', $this->getIdFieldName(), $this->getIdFieldName()),
+            $this->getResource()->getAdditionalEntityTypeFields()
         );
 
         return parent::_beforeLoad();
     }
-
 }

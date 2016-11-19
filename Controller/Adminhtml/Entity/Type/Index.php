@@ -3,6 +3,7 @@
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 
 use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
+use Magento\Framework\Controller\ResultFactory;
 
 /**
  * Entity types list action class
@@ -17,7 +18,7 @@ class Index extends Type
      */
     public function execute()
     {
-        $resultPage = $this->resultPageFactory->create();
+        $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 
         /**
          * Set active menu

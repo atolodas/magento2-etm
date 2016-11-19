@@ -66,7 +66,7 @@ class TypeRepository implements EntityTypeRepositoryInterface
 
     public function delete(EntityTypeInterface $entityType)
     {
-        // TODO: Implement delete() method.
+        $this->entityTypeResource->delete($entityType);
     }
 
     public function deleteById($entityTypeId)

@@ -14,6 +14,7 @@
                 <item name="class" xsi:type="string">back</item>
                 <item name="url" xsi:type="string">entity_type_manager/entity_type/index</item>
             </item>
+            <item name="delete" xsi:type="string">Ainnomix\EntityTypeManager\Block\Adminhtml\EntityType\Edit\Button\Delete</item>
             <item name="save" xsi:type="string">Ainnomix\EntityTypeManager\Block\Adminhtml\EntityType\Edit\Button\Save</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>

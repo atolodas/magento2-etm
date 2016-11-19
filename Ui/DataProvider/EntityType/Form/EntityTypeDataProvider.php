@@ -115,9 +115,6 @@ class EntityTypeDataProvider extends AbstractDataProvider
     {
         $entityType = $this->locator->getEntityType();
         $this->data = [
-            $entityType->getEntityTypeId() => [
-                'entity_type' => $entityType->getData(),
-            ],
             'config' => [
                 'submit_url' => $this->urlBuilder->getUrl(
                     'entity_type_manager/entity_type/save',
@@ -125,6 +122,12 @@ class EntityTypeDataProvider extends AbstractDataProvider
                 )
             ]
         ];
+
+        if ($entityType->getEntityTypeId()) {
+            $this->data[$entityType->getEntityTypeId()] = [
+                'entity_type' => $entityType->getData()
+            ];
+        }
 
         return $this->data;
     }

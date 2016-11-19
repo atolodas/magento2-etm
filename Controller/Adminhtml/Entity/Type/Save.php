@@ -3,44 +3,10 @@
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 
 use Magento\Backend\App\Action;
-use Magento\Framework\Registry;
-use Magento\Framework\View\Result\PageFactory;
-use Magento\Backend\Model\View\Result\ForwardFactory;
 use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
-use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
-use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
 
 class Save extends Type
 {
-
-    /**
-     * @var EntityTypeManagerInterface
-     */
-    protected $entityTypeManager;
-
-    /**
-     * @var EntityTypeRepositoryInterface
-     */
-    protected $entityTypeRepository;
-
-    public function __construct(
-        Action\Context $context,
-        PageFactory $resultPageFactory,
-        ForwardFactory $resultForwardFactory,
-        Registry $registry,
-        EntityTypeManagerInterface $entityTypeManager,
-        EntityTypeRepositoryInterface $entityTypeRepository
-    ) {
-        parent::__construct(
-            $context,
-            $resultPageFactory,
-            $resultForwardFactory,
-            $registry
-        );
-
-        $this->entityTypeManager = $entityTypeManager;
-        $this->entityTypeRepository = $entityTypeRepository;
-    }
 
     public function execute()
     {
@@ -63,11 +29,11 @@ class Save extends Type
         $resultRedirect = $this->resultRedirectFactory->create();
 
         if ($redirectBack == 'new') {
-            $resultRedirect->setPath('entity_type_manager/entity_type/new');
+            $resultRedirect->setPath('*/*/new');
         } elseif ($redirectBack) {
-            $resultRedirect->setPath('entity_type_manager/entity_type/edit', ['id' => $entityType->getEntityTypeId()]);
+            $resultRedirect->setPath('*/*/edit', ['id' => $entityType->getEntityTypeId()]);
         } else {
-            $resultRedirect->setPath('entity_type_manager/entity_type/index');
+            $resultRedirect->setPath('*/*/index');
         }
 
         return $resultRedirect;

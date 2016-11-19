@@ -33,13 +33,23 @@ class TypeActions extends Column
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
-                $item[$this->getData('name')]['edit'] = [
-                    'href' => $this->urlBuilder->getUrl(
-                        'entity_type_manager/entity_type/edit',
-                        ['id' => $item['entity_type_id']]
-                    ),
-                    'label' => __('Edit'),
-                    'hidden' => false,
+                $item[$this->getData('name')] = [
+                    'edit' => [
+                        'href' => $this->urlBuilder->getUrl(
+                            'entity_type_manager/entity_type/edit',
+                            ['id' => $item['entity_type_id']]
+                        ),
+                        'label' => __('Edit'),
+                        'hidden' => false,
+                    ],
+                    'delete' => [
+                        'href' => $this->urlBuilder->getUrl(
+                            'entity_type_manager/entity_type/delete',
+                            ['id' => $item['entity_type_id']]
+                        ),
+                        'label' => __('Delete'),
+                        'hidden' => false,
+                    ]
                 ];
             }
         }
