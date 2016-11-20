@@ -12,8 +12,9 @@ class Builder
 {
 
     const BASE_MENU_ITEM = 'Ainnomix_EntityTypeManager::entity_type_manager';
+    
+    const ITEM_ID_FORMAT = 'Ainnomix_EntityTypeManager::entity_%s_%s';
 
-    protected $menuItemIdFormat = 'Ainnomix_EntityTypeManager::entity_%s_%s';
     /**
      * @var CollectionFactory
      */
@@ -41,7 +42,7 @@ class Builder
         $collection = $this->collectionFactory->create();
 
         foreach ($collection as $entityType) {
-            $baseItemId = sprintf($this->menuItemIdFormat, $entityType->getEntityTypeCode(), 'base');
+            $baseItemId = sprintf(static::ITEM_ID_FORMAT, $entityType->getEntityTypeCode(), 'base');
             $data = [
                 'id'        => $baseItemId,
                 'title'     => $entityType->getEntityTypeName(),
@@ -55,7 +56,7 @@ class Builder
             $item = $this->menuItemFactory->create($data);
             $menu->add($item, static::BASE_MENU_ITEM, $data['sortOrder']);
 
-            $listItemId = sprintf($this->menuItemIdFormat, $entityType->getEntityTypeCode(), 'list');
+            $listItemId = sprintf(static::ITEM_ID_FORMAT, $entityType->getEntityTypeCode(), 'list');
             $data = [
                 'id'        => $listItemId,
                 'title'     => 'Manage Entities',
@@ -70,7 +71,7 @@ class Builder
             $listItem = $this->menuItemFactory->create($data);
             $item->getChildren()->add($listItem, null, 10);
 
-            $attributesItemId = sprintf($this->menuItemIdFormat, $entityType->getEntityTypeCode(), 'attributes');
+            $attributesItemId = sprintf(static::ITEM_ID_FORMAT, $entityType->getEntityTypeCode(), 'attributes');
             $data = [
                 'id'        => $attributesItemId,
                 'title'     => 'Manage Attributes',

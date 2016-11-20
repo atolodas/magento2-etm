@@ -3,4 +3,7 @@
     <type name="Magento\Backend\Model\Menu\Builder">
         <plugin name="entityTypesMenu" type="Ainnomix\EntityTypeManager\Plugin\Menu\Builder" />
     </type>
+    <type name="Magento\Framework\Acl\AclResource\Provider">
+        <plugin name="entityTypesMenuAcl" type="Ainnomix\EntityTypeManager\Plugin\Menu\Acl\Provider" />
+    </type>
 </config>
