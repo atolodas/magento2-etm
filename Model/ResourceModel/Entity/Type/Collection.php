@@ -13,4 +13,15 @@ class Collection extends EavEntityTypeCollection
 
         $this->_setIdFieldName($this->getResource()->getIdFieldName());
     }
+
+    protected function _beforeLoad()
+    {
+        $this->join(
+            ['etm' => $this->getResource()->getAdditionalEntityTypeTable()],
+            sprintf('main_table.%s = etm.%s', $this->getIdFieldName(), $this->getIdFieldName()),
+            $this->getResource()->getAdditionalEntityTypeFields()
+        );
+
+        return parent::_beforeLoad();
+    }
 }
