@@ -2,6 +2,9 @@
 
 namespace Ainnomix\EntityTypeManager\Model\Entity;
 
+use Magento\Backend\Block\Menu;
+use Magento\Framework\App\CacheInterface;
+use Magento\Framework\App\Cache\Type\Config;
 use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
 use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
 use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
@@ -10,6 +13,11 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class TypeManager implements EntityTypeManagerInterface
 {
+
+    /**
+     * @var CacheInterface
+     */
+    protected $cacheManager;
 
     /**
      * @var EntityTypeRepositoryInterface
@@ -22,29 +30,25 @@ class TypeManager implements EntityTypeManagerInterface
     protected $entityTypeFactory;
 
     public function __construct(
+        CacheInterface $cacheManager,
         EntityTypeRepositoryInterface $entityTypeRepository,
         EntityTypeInterfaceFactory $entityTypeFactory
     ) {
+        $this->cacheManager = $cacheManager;
         $this->entityTypeRepository = $entityTypeRepository;
         $this->entityTypeFactory = $entityTypeFactory;
     }
 
-    public function create(EntityTypeInterface $entityType)
+    public function save(EntityTypeInterface $entityType)
     {
-        $entityType->setData('attribute_model', 'Magento\Eav\Model\Entity\Attribute');
-        $entityType->setData('entity_attribute_collection', 'Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Attribute\Collection');
-
-        return $this->update($entityType);
-    }
-
-    public function update(EntityTypeInterface $entityType)
-    {
-        return $this->entityTypeRepository->save($entityType);
+        $this->entityTypeRepository->save($entityType);
+        $this->cacheManager->clean([Config::CACHE_TAG, Menu::CACHE_TAGS]);
     }
 
     public function delete(EntityTypeInterface $entityType)
     {
-        return $this->entityTypeRepository->delete($entityType);
+        $this->entityTypeRepository->delete($entityType);
+        $this->cacheManager->clean([Config::CACHE_TAG, Menu::CACHE_TAGS]);
     }
     
     public function get($entityTypeCode)

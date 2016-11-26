@@ -6,6 +6,7 @@ use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
 use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterfaceFactory;
 use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
 use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type as ResourceModel;
+use Ainnomix\EntityTypeManager\Setup\EntityTypeSetup;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 
@@ -22,12 +23,19 @@ class TypeRepository implements EntityTypeRepositoryInterface
      */
     protected $entityTypeFactory;
 
+    /**
+     * @var EntityTypeSetup
+     */
+    protected $entityTypeSetup;
+
     public function __construct(
         ResourceModel $entityTypeResource,
-        EntityTypeInterfaceFactory $entityTypeFactory
+        EntityTypeInterfaceFactory $entityTypeFactory,
+        EntityTypeSetup $entityTypeSetup
     ) {
         $this->entityTypeResource = $entityTypeResource;
         $this->entityTypeFactory = $entityTypeFactory;
+        $this->entityTypeSetup = $entityTypeSetup;
     }
 
     public function get($entityTypeCode)
@@ -56,7 +64,14 @@ class TypeRepository implements EntityTypeRepositoryInterface
 
     public function save(EntityTypeInterface $entityType)
     {
-        $this->entityTypeResource->save($entityType);
+        if ($entityType->getEntityTypeId()) {
+            $this->entityTypeSetup->updateEntityType($entityType->getEntityTypeCode(), $entityType->getData());
+        } else {
+            $this->entityTypeSetup->installEntityType($entityType->getEntityTypeCode(), $entityType->getData());
+
+            $entityType->setData('entity_type_id', $this->entityTypeSetup->getEntityTypeId($entityType->getEntityTypeCode()))
+                ->isObjectNew(false);
+        }
     }
 
     public function getList(SearchCriteriaInterface $searchCriteria)
@@ -66,11 +81,11 @@ class TypeRepository implements EntityTypeRepositoryInterface
 
     public function delete(EntityTypeInterface $entityType)
     {
-        $this->entityTypeResource->delete($entityType);
+        $this->entityTypeSetup->removeEntityType($entityType->getEntityTypeCode());
     }
 
     public function deleteById($entityTypeId)
     {
-        // TODO: Implement deleteById() method.
+        $this->entityTypeSetup->removeEntityType($entityTypeId);
     }
 }

@@ -105,6 +105,80 @@ class EntityTypeDataProvider extends AbstractDataProvider
                         ]
                     ]
                 ]
+            ],
+            'container_use_attribute_set' => [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'formElement' => 'container',
+                            'componentType' => 'container',
+                            'label' => __('Use Attribute Sets'),
+                            'required' => 1,
+                            'sortOrder' => 30
+                        ]
+                    ]
+                ],
+                'children' => [
+                    'use_attribute_set' => [
+                        'arguments' => [
+                            'data' => [
+                                'config' => [
+                                    'dataType' => 'boolean',
+                                    'label' => __('Use Attribute Sets'),
+                                    'formElement' => 'checkbox',
+                                    'componentType' => 'field',
+                                    'prefer' => 'toggle',
+                                    'dataScope' => 'use_attribute_set',
+                                    'code' => 'entity_type_name',
+                                    'visible' => 1,
+                                    'required' => 1,
+                                    'default' => 0,
+                                    'valueMap' => [
+                                        'true' => '1',
+                                        'false' => '0',
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'container_is_store_depended' => [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'formElement' => 'container',
+                            'componentType' => 'container',
+                            'label' => __('Is Store Depended'),
+                            'required' => 1,
+                            'sortOrder' => 30
+                        ]
+                    ]
+                ],
+                'children' => [
+                    'is_store_depended' => [
+                        'arguments' => [
+                            'data' => [
+                                'config' => [
+                                    'dataType' => 'boolean',
+                                    'label' => __('Is Store Depended'),
+                                    'formElement' => 'checkbox',
+                                    'componentType' => 'field',
+                                    'prefer' => 'toggle',
+                                    'dataScope' => 'is_store_depended',
+                                    'code' => 'is_store_depended',
+                                    'visible' => 1,
+                                    'required' => 1,
+                                    'default' => 0,
+                                    'valueMap' => [
+                                        'true' => '1',
+                                        'false' => '0',
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
             ]
         ];
 

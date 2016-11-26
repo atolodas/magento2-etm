@@ -9,9 +9,7 @@ interface EntityTypeManagerInterface
 
     public function get($entityTypeCode);
 
-    public function create(EntityTypeInterface $entityType);
-
-    public function update(EntityTypeInterface $entityType);
+    public function save(EntityTypeInterface $entityType);
 
     public function delete(EntityTypeInterface $entityType);
 }

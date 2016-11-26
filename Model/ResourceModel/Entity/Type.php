@@ -29,23 +29,15 @@ class Type extends EavEntityType
 
         $select->joinInner(
             ['etm' => $this->getAdditionalEntityTypeTable()],
-            sprintf('%s.%s = etm.%s', $this->getMainTable(), $this->getIdFieldName(), $this->getIdFieldName()),
+            sprintf('%s.entity_type_id = etm.entity_type_id', $this->getMainTable()),
             $this->getAdditionalEntityTypeFields()
         );
 
         return $select;
     }
 
-    protected function _afterSave(AbstractModel $object)
+    public function prepareAdditionalEntityTypeData($data)
     {
-        $data = $this->_prepareDataForTable($object, $this->getAdditionalEntityTypeTable());
-
-        $fields = array_keys($data);
-        unset($fields[array_search($this->getIdFieldName(), $fields)]);
-
-        $this->getConnection()
-            ->insertOnDuplicate($this->getAdditionalEntityTypeTable(), $data, $fields);
-
-        return parent::_afterSave($object);
+        return $this->_prepareDataForTable(new \Magento\Framework\DataObject($data), $this->getAdditionalEntityTypeTable());
     }
 }
