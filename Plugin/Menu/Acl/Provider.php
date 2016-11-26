@@ -2,6 +2,7 @@
 
 namespace Ainnomix\EntityTypeManager\Plugin\Menu\Acl;
 
+use Ainnomix\EntityTypeManager\Helper\Data;
 use Ainnomix\EntityTypeManager\Model\Entity\Type;
 use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\CollectionFactory;
 use Ainnomix\EntityTypeManager\Plugin\Menu\Builder;
@@ -17,9 +18,15 @@ class Provider
      */
     protected $collectionFactory;
 
-    public function __construct(CollectionFactory $collectionFactory)
+    /**
+     * @var Data
+     */
+    protected $helper;
+
+    public function __construct(CollectionFactory $collectionFactory, Data $helper)
     {
         $this->collectionFactory = $collectionFactory;
+        $this->helper = $helper;
     }
 
     public function afterGetAclResources(AclResourceProvider $subject, $resources)
@@ -31,9 +38,10 @@ class Provider
                         $collection = $this->collectionFactory->create();
                         /** @var Type $entityType */
                         foreach ($collection as $entityType) {
-                            $baseResourceId = sprintf(Builder::ITEM_ID_FORMAT, $entityType->getEntityTypeCode(), 'base');
-                            $listResourceId = sprintf(Builder::ITEM_ID_FORMAT, $entityType->getEntityTypeCode(), 'list');
-                            $attributeResourceId = sprintf(Builder::ITEM_ID_FORMAT, $entityType->getEntityTypeCode(), 'attributes');
+                            
+                            $baseResourceId = $this->helper->getEntityTypeMenuId($entityType, 'base');
+                            $listResourceId = $this->helper->getEntityTypeMenuId($entityType, 'list');
+                            $attributeResourceId = $this->helper->getEntityTypeMenuId($entityType, 'attributes');
 
                             $data = [
                                 'id'        => $baseResourceId,

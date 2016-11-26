@@ -7,14 +7,13 @@ use Magento\Backend\Model\Menu\Builder as MenuBuilder;
 use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\CollectionFactory;
 use Magento\Backend\Model\Menu\Builder\CommandFactory;
 use Magento\Backend\Model\Menu\Item\Factory;
+use Ainnomix\EntityTypeManager\Helper\Data;
 
 class Builder
 {
 
     const BASE_MENU_ITEM = 'Ainnomix_EntityTypeManager::entity_type_manager';
     
-    const ITEM_ID_FORMAT = 'Ainnomix_EntityTypeManager::entity_%s_%s';
-
     /**
      * @var CollectionFactory
      */
@@ -30,11 +29,21 @@ class Builder
      */
     protected $commandFactory;
 
-    public function __construct(CollectionFactory $collectionFactory, Factory $menuItemFactory, CommandFactory $commandFactory)
-    {
+    /**
+     * @var Data
+     */
+    protected $helper;
+
+    public function __construct(
+        CollectionFactory $collectionFactory,
+        Factory $menuItemFactory,
+        CommandFactory $commandFactory,
+        Data $helper
+    ) {
         $this->collectionFactory = $collectionFactory;
         $this->menuItemFactory = $menuItemFactory;
         $this->commandFactory = $commandFactory;
+        $this->helper = $helper;
     }
 
     public function afterGetResult(MenuBuilder $subject, Menu $menu)
@@ -42,7 +51,7 @@ class Builder
         $collection = $this->collectionFactory->create();
 
         foreach ($collection as $entityType) {
-            $baseItemId = sprintf(static::ITEM_ID_FORMAT, $entityType->getEntityTypeCode(), 'base');
+            $baseItemId = $this->helper->getEntityTypeMenuId($entityType, 'base');
             $data = [
                 'id'        => $baseItemId,
                 'title'     => $entityType->getEntityTypeName(),
@@ -56,7 +65,7 @@ class Builder
             $item = $this->menuItemFactory->create($data);
             $menu->add($item, static::BASE_MENU_ITEM, $data['sortOrder']);
 
-            $listItemId = sprintf(static::ITEM_ID_FORMAT, $entityType->getEntityTypeCode(), 'list');
+            $listItemId = $this->helper->getEntityTypeMenuId($entityType, 'list');
             $data = [
                 'id'        => $listItemId,
                 'title'     => 'Manage Entities',
@@ -71,14 +80,14 @@ class Builder
             $listItem = $this->menuItemFactory->create($data);
             $item->getChildren()->add($listItem, null, 10);
 
-            $attributesItemId = sprintf(static::ITEM_ID_FORMAT, $entityType->getEntityTypeCode(), 'attributes');
+            $attributesItemId = $this->helper->getEntityTypeMenuId($entityType, 'attributes');
             $data = [
                 'id'        => $attributesItemId,
                 'title'     => 'Manage Attributes',
                 'translate' => 'title',
                 'module'    => 'Ainnomix_EntityTypeManager',
-                'sortOrder' => 10,
-                'action'    => sprintf('entity_type_manager/entity_attributes/index/entity_type/%s', $entityType->getEntityTypeId()),
+                'sortOrder' => 20,
+                'action'    => sprintf('entity_type_manager/entity_attribute/index/entity_type/%s', $entityType->getEntityTypeId()),
                 'resource'  => $attributesItemId,
                 'parent'    => $baseItemId
             ];

@@ -3,11 +3,15 @@
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 
 use Magento\Backend\App\Action;
+use Magento\Framework\Registry;
 use Magento\Ui\Component\MassAction\Filter;
-use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type;
+use Ainnomix\EntityTypeManager\Helper\Data;
+use Magento\Backend\Model\View\Result\ForwardFactory;
+use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
+use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\CollectionFactory;
 
-class MassDelete extends Action
+class MassDelete extends Type
 {
 
     /**
@@ -21,21 +25,23 @@ class MassDelete extends Action
     protected $collectionFactory;
 
     /**
-     * @var Type
+     * @var EntityTypeManagerInterface
      */
-    protected $entityTypeResource;
+    protected $entityTypeManager;
 
     public function __construct(
         Action\Context $context,
+        ForwardFactory $resultForwardFactory,
+        Registry $registry,
+        EntityTypeManagerInterface $entityTypeManager,
+        Data $entityTypeHelper,
         Filter $filter,
-        CollectionFactory $collectionFactory,
-        Type $entityTypeResource
+        CollectionFactory $collectionFactory
     ) {
-        parent::__construct($context);
+        parent::__construct($context, $resultForwardFactory, $registry, $entityTypeManager, $entityTypeHelper);
 
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
-        $this->entityTypeResource = $entityTypeResource;
     }
 
     public function execute()
@@ -44,7 +50,7 @@ class MassDelete extends Action
         $collectionSize = $collection->getSize();
 
         foreach ($collection as $entityType) {
-            $this->entityTypeResource->delete($entityType);
+            $this->entityTypeManager->delete($entityType);
         }
 
         $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been deleted.', $collectionSize));

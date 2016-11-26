@@ -18,7 +18,11 @@ class Save extends Type
 
         try {
             $entityType->addData($data);
-            $this->entityTypeRepository->save($entityType);
+            if ($entityType->getEntityTypeId()) {
+                $this->entityTypeManager->update($entityType);
+            } else {
+                $this->entityTypeManager->create($entityType);
+            }
 
             $this->messageManager
                 ->addSuccessMessage(__('Entity type "%1" was successfully saved', $entityType->getEntityTypeName()));

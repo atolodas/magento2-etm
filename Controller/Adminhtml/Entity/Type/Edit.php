@@ -15,7 +15,7 @@ class Edit extends Type
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 
         try {
-            $entityType = $this->initEntityType();
+            $entityType = $this->getEntityType();
         } catch (NotFoundException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
             $resultRedirect = $this->resultRedirectFactory->create();

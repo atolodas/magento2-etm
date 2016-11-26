@@ -2,6 +2,7 @@
 
 namespace Ainnomix\EntityTypeManager\Model\Entity;
 
+use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
 use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
 use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
 use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterfaceFactory;
@@ -26,6 +27,24 @@ class TypeManager implements EntityTypeManagerInterface
     ) {
         $this->entityTypeRepository = $entityTypeRepository;
         $this->entityTypeFactory = $entityTypeFactory;
+    }
+
+    public function create(EntityTypeInterface $entityType)
+    {
+        $entityType->setData('attribute_model', 'Magento\Eav\Model\Entity\Attribute');
+        $entityType->setData('entity_attribute_collection', 'Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Attribute\Collection');
+
+        return $this->update($entityType);
+    }
+
+    public function update(EntityTypeInterface $entityType)
+    {
+        return $this->entityTypeRepository->save($entityType);
+    }
+
+    public function delete(EntityTypeInterface $entityType)
+    {
+        return $this->entityTypeRepository->delete($entityType);
     }
     
     public function get($entityTypeCode)

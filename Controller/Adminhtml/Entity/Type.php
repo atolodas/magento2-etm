@@ -2,17 +2,16 @@
 
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity;
 
+use Ainnomix\EntityTypeManager\Helper\Data;
 use Magento\Backend\App\Action;
-use Magento\Framework\Exception\NotFoundException;
 use Magento\Framework\Registry;
 use Magento\Backend\Model\View\Result\ForwardFactory;
 use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
-use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
 
 /**
  * Entity types base action class
  */
-abstract class Type extends Action
+abstract class Type extends Base
 {
 
     const ADMIN_RESOURCE = 'Ainnomix_EntityTypeManager::manage_entity_types';
@@ -23,59 +22,24 @@ abstract class Type extends Action
     protected $resultForwardFactory;
 
     /**
-     * @var Registry
-     */
-    protected $registry;
-
-    /**
-     * @var EntityTypeManagerInterface
-     */
-    protected $entityTypeManager;
-
-    /**
-     * @var EntityTypeRepositoryInterface
-     */
-    protected $entityTypeRepository;
-
-    /**
      * Class constructor
      *
      * @param Action\Context $context
      * @param ForwardFactory $resultForwardFactory
      * @param Registry $registry
      * @param EntityTypeManagerInterface $entityTypeManager
-     * @param EntityTypeRepositoryInterface $entityTypeRepository
+     * @param Data $entityTypeHelper
      */
     public function __construct(
         Action\Context $context,
         ForwardFactory $resultForwardFactory,
         Registry $registry,
         EntityTypeManagerInterface $entityTypeManager,
-        EntityTypeRepositoryInterface $entityTypeRepository
+        Data $entityTypeHelper
     ) {
-        parent::__construct($context);
+        parent::__construct($context, $registry, $entityTypeManager, $entityTypeHelper);
 
         $this->resultForwardFactory = $resultForwardFactory;
-        $this->registry = $registry;
-        $this->entityTypeManager = $entityTypeManager;
-        $this->entityTypeRepository = $entityTypeRepository;
     }
 
-    /**
-     * @return \Ainnomix\EntityTypeManager\Model\Entity\Type
-     * @throws NotFoundException
-     */
-    protected function initEntityType()
-    {
-        $entityTypeId = (int) $this->getRequest()->getParam('id');
-        $entityType = $this->entityTypeManager->get($entityTypeId);
-        
-        if ($entityTypeId && !$entityType->getEntityTypeId()) {
-            throw new NotFoundException(__('Requested entity type "%1" does not exist', $entityTypeId));
-        }
-
-        $this->registry->register('current_entity_type', $entityType);
-
-        return $entityType;
-    }
 }

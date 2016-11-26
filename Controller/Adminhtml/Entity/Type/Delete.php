@@ -14,7 +14,7 @@ class Delete extends Type
         $resultRedirect = $this->resultRedirectFactory->create();
 
         try {
-            $entityType = $this->initEntityType();
+            $entityType = $this->getEntityType();
         } catch (NotFoundException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
 
@@ -22,7 +22,7 @@ class Delete extends Type
         }
 
         try {
-            $this->entityTypeRepository->delete($entityType);
+            $this->entityTypeManager->delete($entityType);
 
             $this->messageManager->addSuccessMessage(__('Entity type "%1" was successfully removed', $entityType->getEntityTypeName()));
             $resultRedirect->setPath('*/*/index');
