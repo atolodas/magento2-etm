@@ -65,12 +65,10 @@ class TypeRepository implements EntityTypeRepositoryInterface
     public function save(EntityTypeInterface $entityType)
     {
         if ($entityType->getEntityTypeId()) {
-            $this->entityTypeSetup->updateEntityType($entityType->getEntityTypeCode(), $entityType->getData());
+            $this->entityTypeResource->save($entityType);
         } else {
             $this->entityTypeSetup->installEntityType($entityType->getEntityTypeCode(), $entityType->getData());
-
-            $entityType->setData('entity_type_id', $this->entityTypeSetup->getEntityTypeId($entityType->getEntityTypeCode()))
-                ->isObjectNew(false);
+            $this->entityTypeResource->loadByCode($entityType, $entityType->getEntityTypeCode());
         }
     }
 
@@ -81,11 +79,12 @@ class TypeRepository implements EntityTypeRepositoryInterface
 
     public function delete(EntityTypeInterface $entityType)
     {
-        $this->entityTypeSetup->removeEntityType($entityType->getEntityTypeCode());
+        $this->entityTypeResource->delete($entityType);
     }
 
     public function deleteById($entityTypeId)
     {
-        $this->entityTypeSetup->removeEntityType($entityTypeId);
+        $entityType = $this->getById($entityTypeId);
+        $this->entityTypeResource->delete($entityType);
     }
 }

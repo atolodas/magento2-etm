@@ -36,8 +36,21 @@ class Type extends EavEntityType
         return $select;
     }
 
-    public function prepareAdditionalEntityTypeData($data)
+    protected function _afterSave(AbstractModel $object)
     {
-        return $this->_prepareDataForTable(new \Magento\Framework\DataObject($data), $this->getAdditionalEntityTypeTable());
+        $this->updateAdditionalEntityType($object->getData());
+
+        return parent::_afterSave($object);
+    }
+
+    public function updateAdditionalEntityType(array $params)
+    {
+        $data = $this->_prepareDataForTable(new \Magento\Framework\DataObject($params), $this->getAdditionalEntityTypeTable());
+
+        $this->getConnection()->insertOnDuplicate(
+            $this->getAdditionalEntityTypeTable(),
+            $data,
+            array_keys($data)
+        );
     }
 }

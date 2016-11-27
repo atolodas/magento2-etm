@@ -19,11 +19,6 @@ class EntityTypeSetup extends EavSetup
     protected $attributeCollectionName = 'Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Attribute\Collection';
 
     /**
-     * @var ModuleDataSetupInterface
-     */
-    protected $setup;
-
-    /**
      * @var Type
      */
     protected $entityTypeResource;
@@ -37,7 +32,6 @@ class EntityTypeSetup extends EavSetup
     ) {
         parent::__construct($setup, $context, $cache, $attrGroupCollectionFactory);
 
-        $this->setup = $setup;
         $this->entityTypeResource = $entityTypeResource;
     }
 
@@ -68,31 +62,10 @@ class EntityTypeSetup extends EavSetup
     {
         parent::addEntityType($code, $params);
 
-        $this->updateAdditionalEntityType($code, $params);
-
-        return $this;
-    }
-
-    public function updateEntityType($code, $field, $value = null)
-    {
-        parent::updateEntityType($code, $field, $value);
-
-        $field = is_array($field) ? $field : [$field => $value];
-        $this->updateAdditionalEntityType($code, $field);
-
-        return $this;
-    }
-
-    public function updateAdditionalEntityType($code, array $params)
-    {
         $params['entity_type_id'] = $this->getEntityTypeId($code);
-        $data = $this->entityTypeResource->prepareAdditionalEntityTypeData($params);
+        $this->entityTypeResource->updateAdditionalEntityType($params);
 
-        $this->setup->getConnection()->insertOnDuplicate(
-            $this->entityTypeResource->getAdditionalEntityTypeTable(),
-            $data,
-            array_keys($data)
-        );
+        return $this;
     }
 
     public function getDefaultAttributes()
