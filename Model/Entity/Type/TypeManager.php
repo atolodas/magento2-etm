@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Model\Entity;
+namespace Ainnomix\EntityTypeManager\Model\Entity\Type;
 
 use Magento\Backend\Block\Menu;
 use Magento\Framework\App\CacheInterface;

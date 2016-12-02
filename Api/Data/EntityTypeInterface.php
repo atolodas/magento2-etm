@@ -10,4 +10,8 @@ interface EntityTypeInterface
     public function getEntityTypeName();
 
     public function getEntityTypeCode();
+    
+    public function getAttributeCollection($setId = null);
+    
+    
 }

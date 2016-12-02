@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Model\Entity;
+namespace Ainnomix\EntityTypeManager\Model\Entity\Type;
 
 use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
 use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterfaceFactory;

@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface" type="Ainnomix\EntityTypeManager\Model\Entity\Type" />
-    <preference for="Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface" type="Ainnomix\EntityTypeManager\Model\Entity\TypeRepository" />
-    <preference for="Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface" type="Ainnomix\EntityTypeManager\Model\Entity\TypeManager" />
+    <preference for="Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface" type="Ainnomix\EntityTypeManager\Model\Entity\Type\TypeRepository" />
+    <preference for="Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface" type="Ainnomix\EntityTypeManager\Model\Entity\Type\TypeManager" />
+    <preference for="Ainnomix\EntityTypeManager\Api\EntityAttributeRepositoryInterface" type="Ainnomix\EntityTypeManager\Model\Entity\Attribute\AttributeRepository" />
+    <preference for="Ainnomix\EntityTypeManager\Api\EntityAttributeManagerInterface" type="Ainnomix\EntityTypeManager\Model\Entity\Attribute\AttributeManager" />
     <preference for="Ainnomix\EntityTypeManager\Api\LocatorInterface" type="Ainnomix\EntityTypeManager\Model\Locator\RegistryLocator" />
 
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">

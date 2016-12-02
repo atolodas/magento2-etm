@@ -2,9 +2,9 @@
 
 namespace Ainnomix\EntityTypeManager\Block\Adminhtml\Entity\Attribute;
 
+use Ainnomix\EntityTypeManager\Api\LocatorInterface;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Helper\Data;
-use Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory;
 use Magento\Eav\Block\Adminhtml\Attribute\Grid\AbstractGrid;
 
 class Grid extends AbstractGrid
@@ -17,19 +17,26 @@ class Grid extends AbstractGrid
      */
     protected $collectionFactory;
 
+    /**
+     * @var LocatorInterface
+     */
+    protected $locator;
+
     public function __construct(
         Context $context,
         Data $backendHelper,
-        CollectionFactory $collectionFactory,
+        LocatorInterface $locator,
         array $data = []
     ) {
         parent::__construct($context, $backendHelper, $data);
-        $this->collectionFactory = $collectionFactory;
+        $this->locator = $locator;
     }
 
     protected function _prepareCollection()
     {
-        $collection = $this->collectionFactory->create()->addVisibleFilter();
+        $entityType = $this->locator->getEntityType();
+
+        $collection = $entityType->getAttributeCollection();
         $this->setCollection($collection);
 
         return parent::_prepareCollection();

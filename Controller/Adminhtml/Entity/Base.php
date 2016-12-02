@@ -8,6 +8,7 @@ use Magento\Framework\Registry;
 use Ainnomix\EntityTypeManager\Helper\Data;
 use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
 use Magento\Framework\Exception\NotFoundException;
+use Magento\Backend\Model\View\Result\ForwardFactory;
 
 abstract class Base extends Action
 {
@@ -32,6 +33,11 @@ abstract class Base extends Action
     protected $entityTypeHelper;
 
     /**
+     * @var ForwardFactory
+     */
+    protected $resultForwardFactory;
+
+    /**
      * @var EntityTypeInterface
      */
     protected $entityType;
@@ -40,13 +46,15 @@ abstract class Base extends Action
         Action\Context $context,
         Registry $registry,
         EntityTypeManagerInterface $entityTypeManager,
-        Data $entityTypeHelper
+        Data $entityTypeHelper,
+        ForwardFactory $resultForwardFactory
     ) {
         parent::__construct($context);
 
         $this->registry = $registry;
         $this->entityTypeManager = $entityTypeManager;
         $this->entityTypeHelper = $entityTypeHelper;
+        $this->resultForwardFactory = $resultForwardFactory;
     }
 
     /**
@@ -68,7 +76,7 @@ abstract class Base extends Action
             throw new NotFoundException(__('Requested entity type "%1" does not exist', $entityTypeId));
         }
 
-        $this->registry->register('current_entity_type', $entityType);
+        $this->registry->register('current_entity_type', $entityType, true);
         $this->entityType = $entityType;
 
         return $entityType;

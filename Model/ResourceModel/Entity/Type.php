@@ -24,8 +24,7 @@ class Type extends EavEntityType
 
     protected function _getLoadSelect($field, $value, $object)
     {
-        $field = $this->getConnection()->quoteIdentifier(sprintf('%s.%s', $this->getMainTable(), $field));
-        $select = $this->getConnection()->select()->from($this->getMainTable())->where($field . '=?', $value);
+        $select = parent::_getLoadSelect($field, $value, $object);
 
         $select->joinInner(
             ['etm' => $this->getAdditionalEntityTypeTable()],

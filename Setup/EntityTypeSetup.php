@@ -2,7 +2,10 @@
 
 namespace Ainnomix\EntityTypeManager\Setup;
 
+use Ainnomix\EntityTypeManager\Model\Entity;
+use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Attribute\Collection;
 use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type;
+use Magento\Eav\Model\Entity\Attribute;
 use Magento\Eav\Setup\EavSetup;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -11,12 +14,6 @@ use Magento\Eav\Model\ResourceModel\Entity\Attribute\Group\CollectionFactory;
 
 class EntityTypeSetup extends EavSetup
 {
-
-    protected $entityModelName = 'Ainnomix\EntityTypeManager\Model\Entity';
-
-    protected $attributeModelName = 'Magento\Eav\Model\Entity\Attribute';
-
-    protected $attributeCollectionName = 'Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Attribute\Collection';
 
     /**
      * @var Type
@@ -46,10 +43,10 @@ class EntityTypeSetup extends EavSetup
     public function installEntityType($code, array $entity)
     {
         $data = [
-            'entity_model' => $this->getValue($entity, 'entity_model', $this->entityModelName),
-            'attribute_model' => $this->getValue($entity, 'attribute_model', $this->attributeModelName),
+            'entity_model' => $this->getValue($entity, 'entity_model', Entity::class),
+            'attribute_model' => $this->getValue($entity, 'attribute_model', Attribute::class),
             'entity_table' => $this->getValue($entity, 'entity_table', 'etm_entity'),
-            'entity_attribute_collection' => $this->getValue($entity, 'entity_attribute_collection', $this->attributeCollectionName),
+            'entity_attribute_collection' => $this->getValue($entity, 'entity_attribute_collection', Collection::class),
             'attributes' => $this->getDefaultAttributes()
         ];
 

@@ -36,7 +36,7 @@ class Collection extends SearchResult
     {
         $this->join(
             ['etm' => $this->getResource()->getAdditionalEntityTypeTable()],
-            sprintf('main_table.%s = etm.%s', $this->getIdFieldName(), $this->getIdFieldName()),
+            'main_table.entity_type_id = etm.entity_type_id',
             $this->getResource()->getAdditionalEntityTypeFields()
         );
 
