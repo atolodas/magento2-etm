@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Ui\DataProvider\EntityType\Form;
+namespace Ainnomix\EntityTypeManager\Ui\DataProvider\Entity\Type\Form;
 
 use Ainnomix\EntityTypeManager\Api\LocatorInterface;
 use Magento\Eav\Model\ResourceModel\Entity\Type\CollectionFactory;
@@ -8,7 +8,7 @@ use Magento\Ui\Component\Form\Fieldset;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 use Magento\Framework\UrlInterface;
 
-class EntityTypeDataProvider extends AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
 
     /**

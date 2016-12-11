@@ -31,7 +31,7 @@ class AttributeManager implements EntityAttributeManagerInterface
     {
         try {
             $attributeModel = $this->attributeRepository->get($entityType->getEntityTypeCode(), $attribute);
-        } catch (NoSuchEntityException $e) {
+        } catch (\Exception $e) {
             $attributeModel = $this->attributeFactory->create()->setEntityTypeId($entityType->getEntityTypeId());
         }
 

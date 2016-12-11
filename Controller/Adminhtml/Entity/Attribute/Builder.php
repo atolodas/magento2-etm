@@ -48,8 +48,8 @@ class Builder
             return $this->entityAttributeInstance;
         }
 
-        $entityAttributeId = $request->getParam($attributeFiledName, null);
-        $entityAttributeInstance = $this->entityTypeManager->get((int) $entityAttributeId, $entityType);
+        $entityAttributeId = (int) $request->getParam($attributeFiledName, null);
+        $entityAttributeInstance = $this->entityTypeManager->get($entityAttributeId, $entityType);
 
         if ($entityAttributeId && !$entityAttributeInstance->getEntityTypeId()) {
             throw new NotFoundException(__('Requested entity type "%1" does not exist', $entityAttributeId));

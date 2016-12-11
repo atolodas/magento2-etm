@@ -34,7 +34,7 @@ class Save extends Type
             $this->messageManager->addErrorMessage($e->getMessage());
 
             if ($entityType->getEntityTypeId()) {
-                $resultRedirect->setPath('*/*/edit', ['id' => $entityType->getEntityTypeId()]);
+                $resultRedirect->setPath('*/*/edit', ['entity_type_id' => $entityType->getEntityTypeId()]);
             } else {
                 $resultRedirect->setPath('*/*/new');
             }
@@ -43,7 +43,7 @@ class Save extends Type
         if ($redirectBack == 'new') {
             $resultRedirect->setPath('*/*/new');
         } elseif ($redirectBack) {
-            $resultRedirect->setPath('*/*/edit', ['id' => $entityType->getEntityTypeId()]);
+            $resultRedirect->setPath('*/*/edit', ['entity_type_id' => $entityType->getEntityTypeId()]);
         } else {
             $resultRedirect->setPath('*/*/index');
         }

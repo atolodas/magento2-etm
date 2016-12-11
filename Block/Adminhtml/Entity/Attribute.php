@@ -33,6 +33,6 @@ class Attribute extends Container
     public function getCreateUrl()
     {
         $entityType = $this->locator->getEntityType();
-        return $this->getUrl('*/*/new', ['entity_type' => $entityType->getEntityTypeId()]);
+        return $this->getUrl('*/*/new', ['entity_type_id' => $entityType->getEntityTypeId()]);
     }
 }

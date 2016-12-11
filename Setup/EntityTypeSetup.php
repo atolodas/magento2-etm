@@ -2,7 +2,7 @@
 
 namespace Ainnomix\EntityTypeManager\Setup;
 
-use Ainnomix\EntityTypeManager\Model\Entity;
+use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity;
 use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Attribute\Collection;
 use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type;
 use Magento\Eav\Model\Entity\Attribute;

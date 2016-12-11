@@ -29,6 +29,6 @@ class Delete extends Generic
      */
     public function getDeleteUrl()
     {
-        return $this->getUrl('*/*/delete', ['id' => $this->getEntityTypeId()]);
+        return $this->getUrl('*/*/delete', ['entity_type_id' => $this->getEntityTypeId()]);
     }
 }

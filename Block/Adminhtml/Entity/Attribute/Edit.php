@@ -124,7 +124,7 @@ class Edit extends Container
     {
         return $this->getUrl(
             '*/*/',
-            ['entity_type' => $this->_coreRegistry->registry('current_entity_type')->getEntityTypeId()]
+            ['entity_type_id' => $this->_coreRegistry->registry('entity_type')->getEntityTypeId()]
         );
     }
 }

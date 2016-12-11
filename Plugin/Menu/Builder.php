@@ -74,7 +74,7 @@ class Builder
                 'translate' => 'title',
                 'module'    => 'Ainnomix_EntityTypeManager',
                 'sortOrder' => 10,
-                'action'    => sprintf('entity_type_manager/entity/index/entity_type/%s', $entityType->getEntityTypeId()),
+                'action'    => sprintf('entity_type_manager/entity/index/entity_type_id/%s', $entityType->getEntityTypeId()),
                 'resource'  => $listItemId,
                 'parent'    => $baseItemId
             ];
@@ -89,7 +89,7 @@ class Builder
                 'translate' => 'title',
                 'module'    => 'Ainnomix_EntityTypeManager',
                 'sortOrder' => 20,
-                'action'    => sprintf('entity_type_manager/entity_attribute/index/entity_type/%s', $entityType->getEntityTypeId()),
+                'action'    => sprintf('entity_type_manager/entity_attribute/index/entity_type_id/%s', $entityType->getEntityTypeId()),
                 'resource'  => $attributesItemId,
                 'parent'    => $baseItemId
             ];

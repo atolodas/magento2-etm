@@ -63,7 +63,7 @@ class Context
      */
     public function getEntityAttributeBuilder()
     {
-        return $this->entityTypeBuilder;
+        return $this->entityAttributeBuilder;
     }
 
     /**

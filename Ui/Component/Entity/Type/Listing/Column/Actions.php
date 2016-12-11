@@ -1,13 +1,13 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Ui\Component\Listing\Column;
+namespace Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
 use Magento\Framework\UrlInterface;
 
-class TypeActions extends Column
+class Actions extends Column
 {
 
     protected $urlBuilder;
