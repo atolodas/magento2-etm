@@ -3,38 +3,49 @@
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity;
 
 use Ainnomix\EntityTypeManager\Api\EntityAttributeManagerInterface;
-use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
-use Ainnomix\EntityTypeManager\Helper\Data;
-use Magento\Backend\App\Action;
-use Magento\Framework\Exception\NotFoundException;
-use Magento\Framework\Registry;
-use Magento\Backend\Model\View\Result\ForwardFactory;
+use Ainnomix\EntityTypeManager\App\Backend\Action\Context;
+use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Attribute\Builder;
+use Ainnomix\EntityTypeManager\Helper\Backend\Data;
+use Magento\Backend\App\Action as BackendAction;
 
-abstract class Attribute extends Base
+abstract class Attribute extends Action
 {
 
-    protected $aclSuffix = 'attributes';
+    /**
+     * @var Data
+     */
+    protected $backendHelper;
 
-    protected $requestIdFieldName = 'entity_type';
+    /**
+     * @var Builder
+     */
+    protected $entityAttributeBuilder;
 
     /**
      * @var EntityAttributeManagerInterface
      */
-    protected $attributeManager;
+    protected $entityAttributeManager;
 
-    protected $attribute;
+    public function __construct(BackendAction\Context $context, Context $managerContext)
+    {
+        parent::__construct($context, $managerContext);
 
-    public function __construct(
-        Action\Context $context,
-        Registry $registry,
-        EntityTypeManagerInterface $entityTypeManager,
-        Data $entityTypeHelper,
-        ForwardFactory $resultForwardFactory,
-        EntityAttributeManagerInterface $attributeManager
-    ) {
-        parent::__construct($context, $registry, $entityTypeManager, $entityTypeHelper, $resultForwardFactory);
+        $this->backendHelper = $managerContext->getBackendHelper();
+        $this->entityAttributeBuilder = $managerContext->getEntityAttributeBuilder();
+        $this->entityAttributeManager = $managerContext->getEntityAttributeManager();
+    }
 
-        $this->attributeManager = $attributeManager;
+    public function getEntityTypeAclId()
+    {
+        return $this->backendHelper->getEntityTypeAclId(
+            $this->entityTypeBuilder->build($this->getRequest(), 'entity_type_id'),
+            'attributes'
+        );
+    }
+
+    public function getEntityTypeMenuId()
+    {
+        return $this->getEntityTypeAclId();
     }
 
     /**
@@ -42,25 +53,6 @@ abstract class Attribute extends Base
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed($this->getEntityTypeMenuId());
-    }
-
-    public function getAttribute($requestFieldName = 'attribute_id')
-    {
-        if ($this->attribute) {
-            return $this->attribute;
-        }
-
-        $attributeId = (int) $this->getRequest()->getParam($requestFieldName);
-        $attribute = $this->attributeManager->get($attributeId, $this->getEntityType());
-
-        if ($attributeId && !$attribute->getAttributeId()) {
-            throw new NotFoundException(__('Requested entity attribute "%1" does not exist', $attributeId));
-        }
-
-        $this->registry->register('entity_attribute', $attribute);
-        $this->attribute = $attribute;
-
-        return $attribute;
+        return $this->_authorization->isAllowed($this->getEntityTypeAclId());
     }
 }

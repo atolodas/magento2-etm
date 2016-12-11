@@ -3,10 +3,8 @@
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 
 use Magento\Backend\App\Action;
-use Magento\Framework\Registry;
 use Magento\Ui\Component\MassAction\Filter;
-use Ainnomix\EntityTypeManager\Helper\Data;
-use Magento\Backend\Model\View\Result\ForwardFactory;
+use Ainnomix\EntityTypeManager\App\Backend\Action\Context;
 use Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface;
 use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\CollectionFactory;
@@ -24,24 +22,16 @@ class MassDelete extends Type
      */
     protected $collectionFactory;
 
-    /**
-     * @var EntityTypeManagerInterface
-     */
-    protected $entityTypeManager;
-
     public function __construct(
         Action\Context $context,
-        ForwardFactory $resultForwardFactory,
-        Registry $registry,
-        EntityTypeManagerInterface $entityTypeManager,
-        Data $entityTypeHelper,
+        Context $managerContext,
         Filter $filter,
         CollectionFactory $collectionFactory
     ) {
-        parent::__construct($context, $resultForwardFactory, $registry, $entityTypeManager, $entityTypeHelper);
+        parent::__construct($context, $managerContext);
 
-        $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
+        $this->filter = $filter;
     }
 
     public function execute()

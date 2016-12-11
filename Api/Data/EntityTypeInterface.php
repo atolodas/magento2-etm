@@ -12,6 +12,4 @@ interface EntityTypeInterface
     public function getEntityTypeCode();
     
     public function getAttributeCollection($setId = null);
-    
-    
 }

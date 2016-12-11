@@ -54,7 +54,7 @@ class TypeManager implements EntityTypeManagerInterface
     public function get($entityTypeCode)
     {
         try {
-            if (is_int($entityTypeCode)) {
+            if (is_numeric($entityTypeCode)) {
                 $entityType = $this->entityTypeRepository->getById($entityTypeCode);
             } else {
                 $entityType = $this->entityTypeRepository->get($entityTypeCode);

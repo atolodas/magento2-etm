@@ -2,13 +2,12 @@
 
 namespace Ainnomix\EntityTypeManager\Plugin\Menu\Acl;
 
-use Ainnomix\EntityTypeManager\Helper\Data;
-use Ainnomix\EntityTypeManager\Model\Entity\Type;
-use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\CollectionFactory;
-use Ainnomix\EntityTypeManager\Plugin\Menu\Builder;
 use Magento\Framework\Acl;
-use Magento\Framework\Acl\Loader\ResourceLoader;
+use Ainnomix\EntityTypeManager\Model\Entity\Type;
+use Ainnomix\EntityTypeManager\Helper\Backend\Data;
+use Ainnomix\EntityTypeManager\Plugin\Menu\Builder;
 use Magento\Framework\Acl\AclResource\Provider as AclResourceProvider;
+use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\CollectionFactory;
 
 class Provider
 {
@@ -39,9 +38,9 @@ class Provider
                         /** @var Type $entityType */
                         foreach ($collection as $entityType) {
                             
-                            $baseResourceId = $this->helper->getEntityTypeMenuId($entityType, 'base');
-                            $listResourceId = $this->helper->getEntityTypeMenuId($entityType, 'list');
-                            $attributeResourceId = $this->helper->getEntityTypeMenuId($entityType, 'attributes');
+                            $baseResourceId = $this->helper->getEntityTypeAclId($entityType, 'base');
+                            $listResourceId = $this->helper->getEntityTypeAclId($entityType, 'list');
+                            $attributeResourceId = $this->helper->getEntityTypeAclId($entityType, 'attributes');
 
                             $data = [
                                 'id'        => $baseResourceId,

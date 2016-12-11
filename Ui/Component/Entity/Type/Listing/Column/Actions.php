@@ -37,7 +37,7 @@ class TypeActions extends Column
                     'edit' => [
                         'href' => $this->urlBuilder->getUrl(
                             'entity_type_manager/entity_type/edit',
-                            ['id' => $item['entity_type_id']]
+                            ['entity_type_id' => $item['entity_type_id']]
                         ),
                         'label' => __('Edit'),
                         'hidden' => false,
@@ -45,7 +45,7 @@ class TypeActions extends Column
                     'delete' => [
                         'href' => $this->urlBuilder->getUrl(
                             'entity_type_manager/entity_type/delete',
-                            ['id' => $item['entity_type_id']]
+                            ['entity_type_id' => $item['entity_type_id']]
                         ),
                         'label' => __('Delete'),
                         'hidden' => false,

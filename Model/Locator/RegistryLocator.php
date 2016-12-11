@@ -20,6 +20,6 @@ class RegistryLocator implements LocatorInterface
 
     public function getEntityType()
     {
-        return $this->registry->registry('current_entity_type');
+        return $this->registry->registry('entity_type');
     }
 }

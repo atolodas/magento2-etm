@@ -2,22 +2,15 @@
 
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 
-use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 use Magento\Framework\Controller\ResultFactory;
+use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 
-/**
- * Entity types list action class
- */
 class Index extends Type
 {
 
-    /**
-     * Execute action
-     *
-     * @return \Magento\Framework\View\Result\Page
-     */
     public function execute()
     {
+        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 
         /**

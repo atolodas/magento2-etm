@@ -15,7 +15,7 @@
             <block class="Ainnomix\EntityTypeManager\Block\Adminhtml\Entity\Attribute\Edit" name="attribute_edit_content"/>
         </referenceContainer>
         <referenceContainer name="js">
-            <block class="Magento\Backend\Block\Template" name="attribute_edit_js" template="Magento_Catalog::catalog/product/attribute/js.phtml"/>
+            <block class="Magento\Backend\Block\Template" name="attribute_edit_js" template="Ainnomix_EntityTypeManager::entity/attribute/edit/js.phtml"/>
         </referenceContainer>
     </body>
 </page>

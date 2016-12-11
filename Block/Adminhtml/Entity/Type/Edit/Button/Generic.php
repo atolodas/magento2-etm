@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Block\Adminhtml\EntityType\Edit\Button;
+namespace Ainnomix\EntityTypeManager\Block\Adminhtml\Entity\Type\Edit\Button;
 
 use Magento\Backend\Block\Widget\Context;
 use Ainnomix\EntityTypeManager\Api\LocatorInterface;

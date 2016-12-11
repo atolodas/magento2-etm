@@ -2,7 +2,9 @@
 
 namespace Ainnomix\EntityTypeManager\Block\Adminhtml\Entity\Attribute;
 
-class Edit extends \Magento\Backend\Block\Widget\Form\Container
+use Magento\Backend\Block\Widget\Form\Container;
+
+class Edit extends Container
 {
 
     /**
@@ -110,6 +112,19 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
         return $this->getUrl(
             'entity_type_manager/entity_attribute/save',
             ['_current' => true, 'back' => null]
+        );
+    }
+
+    /**
+     * Get URL for back (reset) button
+     *
+     * @return string
+     */
+    public function getBackUrl()
+    {
+        return $this->getUrl(
+            '*/*/',
+            ['entity_type' => $this->_coreRegistry->registry('current_entity_type')->getEntityTypeId()]
         );
     }
 }

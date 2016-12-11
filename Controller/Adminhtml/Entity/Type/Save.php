@@ -3,6 +3,7 @@
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 
 use Magento\Backend\App\Action;
+use Magento\Framework\Exception\NotFoundException;
 use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 
 class Save extends Type
@@ -10,11 +11,18 @@ class Save extends Type
 
     public function execute()
     {
-        $entityTypeId = (int) $this->getRequest()->getParam('id', 0);
         $data = $this->getRequest()->getParam('entity_type', []);
         $redirectBack = $this->getRequest()->getParam('back', false);
 
-        $entityType = $this->entityTypeManager->get($entityTypeId);
+        $resultRedirect = $this->resultRedirectFactory->create();
+
+        try {
+            $entityType = $this->entityTypeBuilder->build($this->getRequest());
+        } catch (NotFoundException $e) {
+            $this->messageManager->addErrorMessage($e->getMessage());
+
+            return $resultRedirect->setPath('*/*/index');
+        }
 
         try {
             $entityType->addData($data);
@@ -24,9 +32,13 @@ class Save extends Type
                 ->addSuccessMessage(__('Entity type "%1" was successfully saved', $entityType->getEntityTypeName()));
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
-        }
 
-        $resultRedirect = $this->resultRedirectFactory->create();
+            if ($entityType->getEntityTypeId()) {
+                $resultRedirect->setPath('*/*/edit', ['id' => $entityType->getEntityTypeId()]);
+            } else {
+                $resultRedirect->setPath('*/*/new');
+            }
+        }
 
         if ($redirectBack == 'new') {
             $resultRedirect->setPath('*/*/new');

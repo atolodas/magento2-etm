@@ -14,7 +14,7 @@ class Delete extends Type
         $resultRedirect = $this->resultRedirectFactory->create();
 
         try {
-            $entityType = $this->getEntityType();
+            $entityType = $this->entityTypeBuilder->build($this->getRequest());
         } catch (NotFoundException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
 

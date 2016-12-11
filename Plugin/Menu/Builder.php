@@ -2,12 +2,13 @@
 
 namespace Ainnomix\EntityTypeManager\Plugin\Menu;
 
+use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
 use Magento\Backend\Model\Menu;
 use Magento\Backend\Model\Menu\Builder as MenuBuilder;
 use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\CollectionFactory;
 use Magento\Backend\Model\Menu\Builder\CommandFactory;
 use Magento\Backend\Model\Menu\Item\Factory;
-use Ainnomix\EntityTypeManager\Helper\Data;
+use Ainnomix\EntityTypeManager\Helper\Backend\Data;
 
 class Builder
 {
@@ -50,6 +51,7 @@ class Builder
     {
         $collection = $this->collectionFactory->create();
 
+        /** @var EntityTypeInterface $entityType */
         foreach ($collection as $entityType) {
             $baseItemId = $this->helper->getEntityTypeMenuId($entityType, 'base');
             $data = [

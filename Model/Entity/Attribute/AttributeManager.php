@@ -30,11 +30,7 @@ class AttributeManager implements EntityAttributeManagerInterface
     public function get($attribute, EntityTypeInterface $entityType)
     {
         try {
-            if (is_numeric($attribute)) {
-                $attributeModel = $this->attributeRepository->getById($attribute, $entityType);
-            } else {
-                $attributeModel = $this->attributeRepository->get($attribute, $entityType);
-            }
+            $attributeModel = $this->attributeRepository->get($entityType->getEntityTypeCode(), $attribute);
         } catch (NoSuchEntityException $e) {
             $attributeModel = $this->attributeFactory->create()->setEntityTypeId($entityType->getEntityTypeId());
         }

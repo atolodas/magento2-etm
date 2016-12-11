@@ -15,7 +15,7 @@ class Edit extends Type
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 
         try {
-            $entityType = $this->getEntityType();
+            $entityTypeInstance = $this->entityTypeBuilder->build($this->getRequest());
         } catch (NotFoundException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
             $resultRedirect = $this->resultRedirectFactory->create();
@@ -23,7 +23,7 @@ class Edit extends Type
             return $resultRedirect->setPath('*/*/index');
         }
 
-        $title = $entityType->getId() ? $entityType->getEntityTypeName() : __('New Entity Type');
+        $title = $entityTypeInstance->getEntityTypeId() ? $entityTypeInstance->getEntityTypeName() : __('New Entity Type');
 
         /**
          * Set active menu

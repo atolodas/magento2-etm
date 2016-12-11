@@ -21,7 +21,7 @@
             <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
             <argument name="name" xsi:type="string">entity_types_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_type_id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_type_id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
@@ -100,11 +100,11 @@
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="Ainnomix\EntityTypeManager\Ui\Component\Listing\Column\TypeActions">
+        <actionsColumn name="actions" class="Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Listing\Column\Actions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">entity_type_id</item>
-                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
                 </item>
             </argument>
         </actionsColumn>
