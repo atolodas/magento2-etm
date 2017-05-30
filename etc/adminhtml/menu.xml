@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
+
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Ainnomix_EntityTypeManager::entity_type_manager" title="Entity Type Manager" translate="title" module="Ainnomix_EntityTypeManager" sortOrder="60" dependsOnModule="Ainnomix_EntityTypeManager" resource="Ainnomix_EntityTypeManager::entity_type_manager"/>
-        <add id="Ainnomix_EntityTypeManager::manage_entity_types" title="Manage Entity Types" translate="title" module="Ainnomix_EntityTypeManager" sortOrder="10" parent="Ainnomix_EntityTypeManager::entity_type_manager" action="entity_type_manager/entity_type/index" resource="Ainnomix_EntityTypeManager::manage_entity_types"/>
+        <add id="Ainnomix_EntityTypeManager::etm" title="Entity Type Manager" translate="title" module="Ainnomix_EntityTypeManager" sortOrder="65" dependsOnModule="Ainnomix_EntityTypeManager" resource="Ainnomix_EntityTypeManager::etm"/>
+        <add id="Ainnomix_EntityTypeManager::etm_entity_type" title="Entity Types" translate="title" module="Ainnomix_EntityTypeManager" sortOrder="10" parent="Ainnomix_EntityTypeManager::etm" resource="Ainnomix_EntityTypeManager::etm_entity_type"/>
+        <add id="Ainnomix_EntityTypeManager::etm_entity_type_list" title="Manage Entity Types" translate="title" module="Ainnomix_EntityTypeManager" sortOrder="10" parent="Ainnomix_EntityTypeManager::etm_entity_type" action="etm/entity_type/index" resource="Ainnomix_EntityTypeManager::etm_entity_type_manage"/>
+        <add id="Ainnomix_EntityTypeManager::etm_entity_type_new" title="Create Entity Type" translate="title" module="Ainnomix_EntityTypeManager" sortOrder="20" parent="Ainnomix_EntityTypeManager::etm_entity_type" action="etm/entity_type/new" resource="Ainnomix_EntityTypeManager::etm_entity_type_manage"/>
     </menu>
 </config>
