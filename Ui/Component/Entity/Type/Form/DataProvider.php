@@ -20,4 +20,16 @@ class DataProvider extends AbstractDataProvider
 
         $this->collection = $collectionFactory->create();
     }
+
+    public function getData()
+    {
+        $result = [];
+        $items = $this->collection->getItems();
+
+        foreach ($items as $item) {
+            $result[$item->getId()] = $item->getData();
+        }
+
+        return $result;
+    }
 }
