@@ -12,7 +12,7 @@ class Index extends Type
     {
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         $resultPage->setActiveMenu('Ainnomix_EntityTypeManager::etm_entity_type_list');
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage Entity Types'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Entity Types'));
 
         return $resultPage;
     }

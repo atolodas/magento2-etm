@@ -2,6 +2,7 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface" type="Ainnomix\EntityTypeManager\Model\Entity\Type" />
+    <preference for="Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface" type="Ainnomix\EntityTypeManager\Model\Entity\TypeRepository" />
 
     <type name="Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\Grid\Collection">
         <arguments>

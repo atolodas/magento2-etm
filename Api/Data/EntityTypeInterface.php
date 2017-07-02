@@ -6,6 +6,13 @@ interface EntityTypeInterface
 {
 
     /**
+     * Get entity type id
+     *
+     * @return int
+     */
+    public function getEntityTypeId();
+
+    /**
      * @return string
      */
     public function getEntityTypeName();

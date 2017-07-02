@@ -4,7 +4,9 @@
     <update handle="styles"/>
     <update handle="editor"/>
 
-    <referenceContainer name="content">
-        <uiComponent name="entity_type_form"/>
-    </referenceContainer>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="entity_type_form"/>
+        </referenceContainer>
+    </body>
 </page>

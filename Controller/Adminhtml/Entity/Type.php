@@ -2,7 +2,8 @@
 
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity;
 
-use Ainnomix\EntityTypeManager\Model\RegistryConstants;
+use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
+use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
 use Magento\Backend\App\Action;
 
 abstract class Type extends Action
@@ -10,25 +11,28 @@ abstract class Type extends Action
 
     const ADMIN_RESOURCE = 'Ainnomix_EntityTypeManager::etm_entity_type_manage';
 
-    protected $coreRegistry;
+    protected $entityTypeRepository;
 
-    public function __construct(
-        Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry
-    ) {
-        $this->coreRegistry = $coreRegistry;
-
+    public function __construct(Action\Context $context, EntityTypeRepositoryInterface $entityTypeRepository)
+    {
         parent::__construct($context);
+
+        $this->entityTypeRepository = $entityTypeRepository;
     }
 
+    /**
+     * @return bool|EntityTypeInterface
+     */
     protected function initCurrentEntityType()
     {
         $entityTypeId = $this->getRequest()->getParam('entity_type_id');
 
-        if ($entityTypeId) {
-            $this->coreRegistry->register(RegistryConstants::CURRENT_ENTITY_TYPE_ID, $entityTypeId);
+        if (!$entityTypeId) {
+            return false;
         }
 
-        return $entityTypeId;
+        $entityType = $this->entityTypeRepository->getById($entityTypeId);
+
+        return $entityType;
     }
 }
