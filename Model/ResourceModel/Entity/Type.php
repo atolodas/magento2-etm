@@ -9,7 +9,7 @@ class Type extends \Magento\Eav\Model\ResourceModel\Entity\Type
     {
         $entityTypeIdentity = new \Zend_Validate_Callback([$this, 'isEntityTypeUnique']);
         $entityTypeIdentity->setMessage(
-            __('A entity type with the same code already exists.'),
+            __('The entity type with the same code already exists.'),
             \Zend_Validate_Callback::INVALID_VALUE
         );
 

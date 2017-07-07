@@ -7,6 +7,17 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 class Delete extends Base implements ButtonProviderInterface
 {
 
+    protected $request;
+
+    public function __construct(
+        \Magento\Framework\UrlInterface $urlBuilder,
+        \Magento\Framework\App\RequestInterface $request
+    ) {
+        parent::__construct($urlBuilder);
+
+        $this->request = $request;
+    }
+
     public function getButtonData()
     {
         $data = [];
@@ -23,8 +34,13 @@ class Delete extends Base implements ButtonProviderInterface
         return $data;
     }
 
-    public function getDeleteUrl()
+    protected function getDeleteUrl()
     {
         return $this->urlBuilder->getUrl('*/*/delete', ['entity_type_id' => $this->getEntityTypeId()]);
+    }
+
+    protected function getEntityTypeId()
+    {
+        return (int) $this->request->getParam('entity_type_id');
     }
 }

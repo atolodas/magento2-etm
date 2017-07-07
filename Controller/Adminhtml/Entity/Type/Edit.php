@@ -21,7 +21,7 @@ class Edit extends Type
             $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
             $resultPage->setActiveMenu('Ainnomix_EntityTypeManager::etm_entity_type_list');
 
-            if ($entityType && $entityType->getEntityTypeId()) {
+            if ($entityType->getEntityTypeId()) {
                 $resultPage->getConfig()->getTitle()->prepend($entityType->getEntityTypeName());
             } else {
                 $resultPage->getConfig()->getTitle()->prepend(__('New Entity Type'));

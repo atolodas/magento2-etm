@@ -6,6 +6,12 @@ use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
 
 class Type extends \Magento\Eav\Model\Entity\Type implements EntityTypeInterface
 {
+
+    protected function _construct()
+    {
+        $this->_init('Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type');
+    }
+
     public function getEntityTypeName()
     {
         return $this->getData('entity_type_name');
