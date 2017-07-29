@@ -1,0 +1,1 @@
+# magento2-etm-attribute-set
