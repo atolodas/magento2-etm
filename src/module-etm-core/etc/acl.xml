@@ -4,8 +4,10 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Ainnomix_EntityTypeManager::entity_type_manager" title="Entity Type Manager" translate="title" sortOrder="70">
-                    <resource id="Ainnomix_EntityTypeManager::manage_entity_types" title="Manage Entity Types" translate="title" sortOrder="10" />
+                <resource id="Ainnomix_EntityTypeManager::etm" title="Entity Type Manager" translate="title" sortOrder="70">
+                    <resource id="Ainnomix_EntityTypeManager::etm_entity_type" title="Entity Types" translate="title" sortOrder="10">
+                        <resource id="Ainnomix_EntityTypeManager::etm_entity_type_manage" title="Manage Entity Types" translate="title" sortOrder="10" />
+                    </resource>
                 </resource>
             </resource>
         </resources>

@@ -20,7 +20,6 @@ class Actions extends Column
         array $data
     ) {
         $this->urlBuilder = $urlBuilder;
-
         parent::__construct(
             $context,
             $uiComponentFactory,
@@ -28,7 +27,6 @@ class Actions extends Column
             $data
         );
     }
-
     public function prepareDataSource(array $dataSource)
     {
         if (isset($dataSource['data']['items'])) {
@@ -36,7 +34,7 @@ class Actions extends Column
                 $item[$this->getData('name')] = [
                     'edit' => [
                         'href' => $this->urlBuilder->getUrl(
-                            'entity_type_manager/entity_type/edit',
+                            'etm/entity_type/edit',
                             ['entity_type_id' => $item['entity_type_id']]
                         ),
                         'label' => __('Edit'),
@@ -44,7 +42,7 @@ class Actions extends Column
                     ],
                     'delete' => [
                         'href' => $this->urlBuilder->getUrl(
-                            'entity_type_manager/entity_type/delete',
+                            'etm/entity_type/delete',
                             ['entity_type_id' => $item['entity_type_id']]
                         ),
                         'label' => __('Delete'),
@@ -53,7 +51,6 @@ class Actions extends Column
                 ];
             }
         }
-
         return $dataSource;
     }
 }

@@ -1,1 +1,2 @@
-# magento2-etm-core
+Magento 2 Entity Types Manager
+===

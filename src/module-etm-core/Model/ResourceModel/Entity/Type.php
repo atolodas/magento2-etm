@@ -2,54 +2,43 @@
 
 namespace Ainnomix\EntityTypeManager\Model\ResourceModel\Entity;
 
-use Magento\Eav\Model\ResourceModel\Entity\Type as EavEntityType;
-use Magento\Framework\Model\AbstractModel;
-
-class Type extends EavEntityType
+class Type extends \Magento\Eav\Model\ResourceModel\Entity\Type
 {
-    public function getAdditionalEntityTypeTable()
+
+    public function getValidationRulesBeforeSave()
     {
-        return $this->getTable('etm_eav_entity_type');
-    }
-
-    public function getAdditionalEntityTypeFields()
-    {
-        $fields = $this->getConnection()->describeTable($this->getAdditionalEntityTypeTable());
-        $fields = array_keys($fields);
-
-        unset($fields[array_search($this->getIdFieldName(), $fields)]);
-
-        return $fields;
-    }
-
-    protected function _getLoadSelect($field, $value, $object)
-    {
-        $select = parent::_getLoadSelect($field, $value, $object);
-
-        $select->joinInner(
-            ['etm' => $this->getAdditionalEntityTypeTable()],
-            sprintf('%s.entity_type_id = etm.entity_type_id', $this->getMainTable()),
-            $this->getAdditionalEntityTypeFields()
+        $entityTypeIdentity = new \Zend_Validate_Callback([$this, 'isEntityTypeUnique']);
+        $entityTypeIdentity->setMessage(
+            __('The entity type with the same code already exists.'),
+            \Zend_Validate_Callback::INVALID_VALUE
         );
 
-        return $select;
+        return $entityTypeIdentity;
     }
 
-    protected function _afterSave(AbstractModel $object)
+    public function isEntityTypeUnique(\Magento\Eav\Model\Entity\Type $entityType)
     {
-        $this->updateAdditionalEntityType($object->getData());
-
-        return parent::_afterSave($object);
+        return !$this->entityTypeExists($entityType);
     }
 
-    public function updateAdditionalEntityType(array $params)
+    public function entityTypeExists(\Magento\Eav\Model\Entity\Type $entityType)
     {
-        $data = $this->_prepareDataForTable(new \Magento\Framework\DataObject($params), $this->getAdditionalEntityTypeTable());
+        $connection = $this->getConnection();
+        $select = $connection->select();
 
-        $this->getConnection()->insertOnDuplicate(
-            $this->getAdditionalEntityTypeTable(),
-            $data,
-            array_keys($data)
+        $binds = [
+            'entity_type_code' => $entityType->getEntityTypeCode(),
+            'entity_type_id'   => (int) $entityType->getEntityId()
+        ];
+
+        $select->from(
+            $this->getMainTable()
+        )->where(
+            '(entity_type_code = :entity_type_code)'
+        )->where(
+            'entity_type_id != :entity_type_id'
         );
+
+        return $connection->fetchRow($select, $binds);
     }
 }

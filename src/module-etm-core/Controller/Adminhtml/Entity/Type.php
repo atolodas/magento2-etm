@@ -2,23 +2,31 @@
 
 namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity;
 
-use Magento\Backend\App\Action as BackendAction;
-use Ainnomix\EntityTypeManager\App\Backend\Action\Context;
+use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
+use Ainnomix\EntityTypeManager\Api\EntityTypeManagementInterface;
+use Magento\Backend\App\Action;
 
 abstract class Type extends Action
 {
 
-    const ADMIN_RESOURCE = 'Ainnomix_EntityTypeManager::manage_entity_types';
+    const ADMIN_RESOURCE = 'Ainnomix_EntityTypeManager::etm_entity_type_manage';
+
+    protected $entityTypeManagement;
+
+    public function __construct(Action\Context $context, EntityTypeManagementInterface $entityTypeManagement)
+    {
+        parent::__construct($context);
+
+        $this->entityTypeManagement = $entityTypeManagement;
+    }
 
     /**
-     * @var \Ainnomix\EntityTypeManager\Api\EntityTypeManagerInterface
+     * @return bool|EntityTypeInterface
      */
-    protected $entityTypeManager;
-
-    public function __construct(BackendAction\Context $context, Context $managerContext)
+    protected function initCurrentEntityType()
     {
-        parent::__construct($context, $managerContext);
+        $entityTypeId = $this->getRequest()->getParam('entity_type_id');
 
-        $this->entityTypeManager = $managerContext->getEntityTypeManager();
+        return $this->entityTypeManagement->get((int) $entityTypeId);
     }
 }
