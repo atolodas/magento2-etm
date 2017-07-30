@@ -1,5 +1,5 @@
 {
-    "name": "ainnomix/module-etm-core",
+    "name": "ainnomix/module-etm-staging",
     "description": "Magento 2 Entity types manager. Core functionality",
     "type": "magento2-module",
     "version": "0.0.1",
