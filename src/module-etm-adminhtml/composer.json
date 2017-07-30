@@ -1,6 +1,6 @@
 {
-    "name": "ainnomix/module-etm-core",
-    "description": "Magento 2 Entity types manager. Core functionality",
+    "name": "ainnomix/module-etm-adminhtml",
+    "description": "Magento 2 Entity types manager. Adds full GRUD support in admin area",
     "type": "magento2-module",
     "version": "0.0.1",
     "keywords": [
@@ -8,7 +8,7 @@
         "magento2",
         "entity-type-manager",
         "etm",
-        "core"
+        "adminhtml"
     ],
     "homepage": "https://github.com/Ainnomix/magento2-etm",
     "authors": [
@@ -22,14 +22,17 @@
     },
     "require": {
         "magento/framework": "100.1.*",
-        "magento/module-eav": "100.1.*"
+        "magento/module-eav": "100.1.*",
+        "magento/module-backend": "100.1.*",
+        "magento/module-ui": "100.1.*",
+        "ainnomix/etm-core": "~0.1"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Ainnomix\\EtmCore\\": ""
+            "Ainnomix\\EtmAdminhtml\\": ""
         }
     }
 }

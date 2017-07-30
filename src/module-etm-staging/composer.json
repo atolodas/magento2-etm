@@ -8,7 +8,7 @@
         "magento2",
         "entity-type-manager",
         "etm",
-        "core"
+        "staging"
     ],
     "homepage": "https://github.com/Ainnomix/magento2-etm",
     "authors": [
@@ -22,14 +22,16 @@
     },
     "require": {
         "magento/framework": "100.1.*",
-        "magento/module-eav": "100.1.*"
+        "magento/module-eav": "100.1.*",
+        "module-staging": "100.1.*",
+        "ainnomix/etm-core": "~0.1"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Ainnomix\\EtmCore\\": ""
+            "Ainnomix\\EtmStaging\\": ""
         }
     }
 }
