@@ -1,5 +1,5 @@
 {
-    "name": "ainnomix/entity-type-manager",
+    "name": "ainnomix/etm",
     "description": "Magento 2 Entity type manager",
     "type": "magento2-module",
     "version": "0.0.1",
