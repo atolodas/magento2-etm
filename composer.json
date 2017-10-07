@@ -28,20 +28,17 @@
     "replace": {
         "ainnomix/module-etm-core": "self.version",
         "ainnomix/module-etm-adminhtml": "self.version",
-        "ainnomix/module-etm-attribute-set": "self.version",
         "ainnomix/module-etm-staging": "self.version"
     },
     "autoload": {
         "files": [
             "src/module-etm-core/registration.php",
             "src/module-etm-adminhtml/registration.php",
-            "src/module-etm-attribute-set/registration.php",
             "src/module-etm-staging/registration.php"
         ],
         "psr-4": {
             "Ainnomix\\EtmCore\\": "src/module-etm-core",
             "Ainnomix\\EtmAdminhtml\\": "src/module-etm-adminhtml",
-            "Ainnomix\\EtmAttributeSet\\": "src/module-etm-attribute-set",
             "Ainnomix\\EtmStaging\\": "src/module-etm-staging"
         }
     }
