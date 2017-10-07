@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
+namespace Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
 
 use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 use Magento\Framework\Controller\ResultFactory;

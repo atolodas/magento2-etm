@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity;
+namespace Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity;
 
 use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
 use Ainnomix\EntityTypeManager\Api\EntityTypeManagementInterface;
