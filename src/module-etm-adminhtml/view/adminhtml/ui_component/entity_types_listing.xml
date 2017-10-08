@@ -100,7 +100,7 @@
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Listing\Column\Actions">
+        <actionsColumn name="actions" class="Ainnomix\EtmAdminhtml\Ui\Component\Entity\Type\Listing\Column\Actions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">entity_type_id</item>

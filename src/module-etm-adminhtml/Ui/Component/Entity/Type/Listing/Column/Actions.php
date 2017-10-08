@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Listing\Column;
+namespace Ainnomix\EtmAdminhtml\Ui\Component\Entity\Type\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
