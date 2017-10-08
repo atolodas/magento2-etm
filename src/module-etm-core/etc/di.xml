@@ -1,22 +1,7 @@
 <?xml version="1.0"?>
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface" type="Ainnomix\EntityTypeManager\Model\Entity\Type" />
-    <preference for="Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface" type="Ainnomix\EntityTypeManager\Model\Entity\TypeRepository" />
-    <preference for="Ainnomix\EntityTypeManager\Api\EntityTypeManagementInterface" type="Ainnomix\EntityTypeManager\Model\Entity\TypeManagement" />
-
-    <type name="Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\Grid\Collection">
-        <arguments>
-            <argument name="mainTable" xsi:type="string">eav_entity_type</argument>
-            <argument name="resourceModel" xsi:type="string">Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type</argument>
-        </arguments>
-    </type>
-
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments>
-            <argument name="collections" xsi:type="array">
-                <item name="entity_types_listing_data_source" xsi:type="string">Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\Grid\Collection</item>
-            </argument>
-        </arguments>
-    </type>
+    <preference for="Ainnomix\EtmCore\Api\Data\EntityTypeInterface" type="Ainnomix\EtmCore\Model\Entity\Type" />
+    <preference for="Ainnomix\EtmCore\Api\EntityTypeRepositoryInterface" type="Ainnomix\EtmCore\Model\Entity\TypeRepository" />
+    <preference for="Ainnomix\EtmCore\Api\EntityTypeManagementInterface" type="Ainnomix\EtmCore\Model\Entity\TypeManagement" />
 </config>

@@ -1,11 +1,11 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Model\Entity;
+namespace Ainnomix\EtmCore\Model\Entity;
 
-use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
-use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterfaceFactory;
-use Ainnomix\EntityTypeManager\Api\EntityTypeManagementInterface;
-use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
+use Ainnomix\EtmCore\Api\Data\EntityTypeInterface;
+use Ainnomix\EtmCore\Api\Data\EntityTypeInterfaceFactory;
+use Ainnomix\EtmCore\Api\EntityTypeManagementInterface;
+use Ainnomix\EtmCore\Api\EntityTypeRepositoryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 class TypeManagement implements EntityTypeManagementInterface

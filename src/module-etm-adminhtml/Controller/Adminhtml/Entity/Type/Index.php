@@ -2,10 +2,10 @@
 
 namespace Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
 
-use Magento\Backend\App\Action;
 use Magento\Framework\Controller\ResultFactory;
+use Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
 
-class Index extends Action
+class Index extends Type
 {
 
     public function execute()

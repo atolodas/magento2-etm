@@ -12,15 +12,15 @@
             <item name="namespace" xsi:type="string">entity_type_form</item>
         </item>
         <item name="buttons" xsi:type="array">
-            <item name="back" xsi:type="string">Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Form\Button\Back</item>
-            <item name="delete" xsi:type="string">Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Form\Button\Delete</item>
-            <item name="save" xsi:type="string">Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Form\Button\Save</item>
+            <item name="back" xsi:type="string">Ainnomix\EtmAdminhtml\Ui\Component\Entity\Type\Form\Button\Back</item>
+            <item name="delete" xsi:type="string">Ainnomix\EtmAdminhtml\Ui\Component\Entity\Type\Form\Button\Delete</item>
+            <item name="save" xsi:type="string">Ainnomix\EtmAdminhtml\Ui\Component\Entity\Type\Form\Button\Save</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
     <dataSource name="entity_type_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Form\DataProvider</argument>
+            <argument name="class" xsi:type="string">Ainnomix\EtmAdminhtml\Ui\Component\Entity\Type\Form\DataProvider</argument>
             <argument name="name" xsi:type="string">entity_type_form_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_type_id</argument>
             <argument name="requestFieldName" xsi:type="string">entity_type_id</argument>

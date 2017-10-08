@@ -1,8 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Form\Button;
-
-use Ainnomix\EntityTypeManager\Model\RegistryConstants;
+namespace Ainnomix\EtmAdminhtml\Ui\Component\Entity\Type\Form\Button;
 
 class Base
 {

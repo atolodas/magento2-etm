@@ -4,6 +4,6 @@
     <menu>
         <add id="Ainnomix_EtmAdminhtml::etm" title="Entity Type Manager" translate="title" module="Ainnomix_EtmAdminhtml" sortOrder="65" dependsOnModule="Ainnomix_EtmAdminhtml" resource="Ainnomix_EtmAdminhtml::etm"/>
         <add id="Ainnomix_EtmAdminhtml::etm_entity_type" title="Entity Type Manager" translate="title" module="Ainnomix_EtmAdminhtml" sortOrder="10" parent="Ainnomix_EtmAdminhtml::etm" resource="Ainnomix_EtmAdminhtml::etm_entity_type"/>
-        <add id="Ainnomix_EtmAdminhtml::etm_entity_type_list" title="Manage Entity Types" translate="title" module="Ainnomix_EtmAdminhtml" sortOrder="10" parent="Ainnomix_EtmAdminhtml::etm_entity_type" action="etm/entity_type/index" resource="Ainnomix_EtmAdminhtml::etm_entity_type_manage"/>
+        <add id="Ainnomix_EtmAdminhtml::etm_entity_type_manage" title="Manage Entity Types" translate="title" module="Ainnomix_EtmAdminhtml" sortOrder="10" parent="Ainnomix_EtmAdminhtml::etm_entity_type" action="etm/entity_type/index" resource="Ainnomix_EtmAdminhtml::etm_entity_type_manage"/>
     </menu>
 </config>

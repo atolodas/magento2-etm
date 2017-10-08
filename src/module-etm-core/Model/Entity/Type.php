@@ -1,15 +1,15 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Model\Entity;
+namespace Ainnomix\EtmCore\Model\Entity;
 
-use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
+use Ainnomix\EtmCore\Api\Data\EntityTypeInterface;
 
 class Type extends \Magento\Eav\Model\Entity\Type implements EntityTypeInterface
 {
 
     protected function _construct()
     {
-        $this->_init('Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type');
+        $this->_init(\Ainnomix\EtmCore\Model\ResourceModel\Entity\Type::class);
     }
 
     public function getEntityTypeName()

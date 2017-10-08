@@ -2,8 +2,8 @@
 
 namespace Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
 
-use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
 use Magento\Framework\Controller\ResultFactory;
+use Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
 
 class Edit extends Type
 {

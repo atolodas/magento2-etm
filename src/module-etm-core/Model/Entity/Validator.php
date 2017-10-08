@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Model\Entity;
+namespace Ainnomix\EtmCore\Model\Entity;
 
 class Validator
 {

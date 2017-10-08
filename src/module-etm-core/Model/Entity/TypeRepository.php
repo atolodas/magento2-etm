@@ -1,11 +1,11 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Model\Entity;
+namespace Ainnomix\EtmCore\Model\Entity;
 
-use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
-use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterfaceFactory;
-use Ainnomix\EntityTypeManager\Api\EntityTypeRepositoryInterface;
-use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type as TypeResource;
+use Ainnomix\EtmCore\Api\Data\EntityTypeInterface;
+use Ainnomix\EtmCore\Api\Data\EntityTypeInterfaceFactory;
+use Ainnomix\EtmCore\Api\EntityTypeRepositoryInterface;
+use Ainnomix\EtmCore\Model\ResourceModel\Entity\Type as TypeResource;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 

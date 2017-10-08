@@ -1,8 +1,8 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Api;
+namespace Ainnomix\EtmCore\Api;
 
-use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
+use Ainnomix\EtmCore\Api\Data\EntityTypeInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface EntityTypeRepositoryInterface

@@ -1,9 +1,9 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Form;
+namespace Ainnomix\EtmAdminhtml\Ui\Component\Entity\Type\Form;
 
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Ainnomix\EntityTypeManager\Model\ResourceModel\Entity\Type\CollectionFactory;
+use Ainnomix\EtmCore\Model\ResourceModel\Entity\Type\CollectionFactory;
 
 class DataProvider extends AbstractDataProvider
 {

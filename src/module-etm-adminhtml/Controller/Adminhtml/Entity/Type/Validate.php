@@ -2,12 +2,11 @@
 
 namespace Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
 
-use Ainnomix\EntityTypeManager\Api\EntityTypeManagementInterface;
-use Ainnomix\EntityTypeManager\Controller\Adminhtml\Entity\Type;
-use Ainnomix\EntityTypeManager\Model\Entity\Validator;
 use Magento\Backend\App\Action;
 use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\Exception\NoSuchEntityException;
+use Ainnomix\EtmCore\Model\Entity\Validator;
+use Ainnomix\EtmCore\Api\EntityTypeManagementInterface;
+use Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
 
 class Validate extends Type
 {

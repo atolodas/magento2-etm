@@ -2,14 +2,14 @@
 
 namespace Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity;
 
-use Ainnomix\EntityTypeManager\Api\Data\EntityTypeInterface;
-use Ainnomix\EntityTypeManager\Api\EntityTypeManagementInterface;
+use Ainnomix\EtmCore\Api\Data\EntityTypeInterface;
+use Ainnomix\EtmCore\Api\EntityTypeManagementInterface;
 use Magento\Backend\App\Action;
 
 abstract class Type extends Action
 {
 
-    const ADMIN_RESOURCE = 'Ainnomix_EntityTypeManager::etm_entity_type_manage';
+    const ADMIN_RESOURCE = 'Ainnomix_EtmAdminhtml::etm_entity_type_manage';
 
     protected $entityTypeManagement;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ainnomix\EntityTypeManager\Ui\Component\Entity\Type\Form\Button;
+namespace Ainnomix\EtmAdminhtml\Ui\Component\Entity\Type\Form\Button;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
