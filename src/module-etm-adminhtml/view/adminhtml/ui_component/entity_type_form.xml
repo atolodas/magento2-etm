@@ -59,7 +59,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Entity Type Name</item>
+                    <item name="label" xsi:type="string" translate="true">Name</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">entity_type_form</item>
                     <item name="sortOrder" xsi:type="number">20</item>
@@ -74,11 +74,11 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Entity Type Code</item>
+                    <item name="label" xsi:type="string" translate="true">Code</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">entity_type_form</item>
                     <item name="sortOrder" xsi:type="number">20</item>
-                    <item name="dataScope" xsi:type="string">entity_type_code</item>
+                    <item name="dataScope" xsi:type="string">entity_type[entity_type_code]</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>

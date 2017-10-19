@@ -28,7 +28,7 @@ class TypeManagement implements EntityTypeManagementInterface
      *
      * @return EntityTypeInterface
      */
-    public function get($entityTypeId)
+    public function get($entityTypeId )
     {
         try {
             $entityType = is_int($entityTypeId)

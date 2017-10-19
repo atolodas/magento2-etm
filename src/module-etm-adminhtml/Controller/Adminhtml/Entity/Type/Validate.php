@@ -3,6 +3,7 @@
 namespace Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
 
 use Magento\Backend\App\Action;
+use Magento\Framework\DataObjectFactory;
 use Magento\Framework\Controller\ResultFactory;
 use Ainnomix\EtmCore\Model\Entity\Validator;
 use Ainnomix\EtmCore\Api\EntityTypeManagementInterface;
@@ -13,24 +14,28 @@ class Validate extends Type
 
     protected $validator;
 
+    protected $objectFactory;
+
     public function __construct(
         Action\Context $context,
         EntityTypeManagementInterface $entityTypeManagement,
-        Validator $validator
+        Validator $validator,
+        DataObjectFactory $objectFactory
     ) {
         parent::__construct($context, $entityTypeManagement);
 
         $this->validator = $validator;
+        $this->objectFactory = $objectFactory;
     }
 
     public function execute()
     {
-        $response = new \Magento\Framework\DataObject();
+        $response = $this->objectFactory->create();
         $response->setError(false);
 
         try {
             $entityType = $this->initCurrentEntityType();
-            $entityType->addData($this->getRequest()->getParams());
+            $entityType->addData($this->getRequest()->getParam('entity_type'));
             $this->validator->validate($entityType);
         } catch (\Magento\Framework\Validator\Exception $exception) {
             $response->setError(true);

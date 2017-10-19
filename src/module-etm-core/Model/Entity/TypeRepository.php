@@ -32,6 +32,12 @@ class TypeRepository implements EntityTypeRepositoryInterface
 
     public function save(EntityTypeInterface $entity)
     {
+        if (!$entity->getTable()) {
+            $entity->setTable(sprintf('%s_entity', $entity->getEntityTypeCode()));
+        }
+
+        $entity->isCustom(true);
+
         $this->resource->save($entity);
 
         return $entity;
