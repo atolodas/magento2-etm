@@ -18,12 +18,17 @@ class Delete extends Base implements ButtonProviderInterface
         $this->request = $request;
     }
 
+    /**
+     * Retrieve delete button configuration
+     *
+     * @return array
+     */
     public function getButtonData()
     {
         $data = [];
         if ($this->getEntityTypeId()) {
             $data = [
-                'label' => __('Delete Entity Type'),
+                'label' => __('Delete'),
                 'class' => 'delete',
                 'on_click' => 'deleteConfirm(\'' . __(
                         'Are you sure you want to do this?'

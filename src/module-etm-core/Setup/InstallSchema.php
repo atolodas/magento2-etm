@@ -40,7 +40,8 @@ class InstallSchema implements InstallSchemaInterface
                 ),
                 'entity_type_id',
                 $installer->getTable('eav_entity_type'),
-                'entity_type_id'
+                'entity_type_id',
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
             )
             ->setComment('Additional table for EAV entity type');
 

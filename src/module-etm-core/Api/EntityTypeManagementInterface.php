@@ -20,4 +20,15 @@ interface EntityTypeManagementInterface
      * @return EntityTypeInterface
      */
     public function save(EntityTypeInterface $entityType);
+
+    /**
+     * Delete entity type instance
+     *
+     * @param EntityTypeInterface $entityType Entity type instance
+     *
+     * @return void
+     *
+     * @throws \LogicException
+     */
+    public function delete(EntityTypeInterface $entityType);
 }

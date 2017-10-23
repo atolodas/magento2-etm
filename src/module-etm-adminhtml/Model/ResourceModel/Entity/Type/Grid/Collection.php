@@ -6,15 +6,30 @@ use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 
 class Collection extends SearchResult
 {
+    protected $additionalTableAdded = null;
 
-    protected function _beforeLoad()
+    protected function _construct()
     {
-        $this->join(
-            ['etm' => $this->getTable('etm_eav_entity_type')],
-            'main_table.entity_type_id = etm.entity_type_id',
-            ['entity_type_name']
-        );
+        $this->addFilterToMap('entity_type_id', 'main_table.entity_type_id');
+    }
 
-        return parent::_beforeLoad();
+    public function getSelect()
+    {
+        if (!$this->additionalTableAdded) {
+            $select = parent::getSelect();
+            if ($select) {
+                $this->additionalTableAdded = true;
+
+                $this->join(
+                    ['etm' => $this->getTable('etm_eav_entity_type')],
+                    'main_table.entity_type_id = etm.entity_type_id',
+                    ['entity_type_name']
+                );
+            }
+
+            return $select;
+        }
+
+        return parent::getSelect();
     }
 }

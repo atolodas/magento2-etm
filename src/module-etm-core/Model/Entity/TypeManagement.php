@@ -49,4 +49,16 @@ class TypeManagement implements EntityTypeManagementInterface
     {
         return $this->entityTypeRepository->save($entityType);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete(EntityTypeInterface $entityType)
+    {
+        if (!$entityType->getEntityTypeId()) {
+            throw new \LogicException('Cannot delete empty entity');
+        }
+
+        $this->entityTypeRepository->delete($entityType);
+    }
 }
