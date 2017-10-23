@@ -63,7 +63,7 @@
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">entity_type_form</item>
                     <item name="sortOrder" xsi:type="number">20</item>
-                    <item name="dataScope" xsi:type="string">entity_type[entity_type_name]</item>
+                    <item name="dataScope" xsi:type="string">entity_type_name</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -78,7 +78,7 @@
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">entity_type_form</item>
                     <item name="sortOrder" xsi:type="number">20</item>
-                    <item name="dataScope" xsi:type="string">entity_type[entity_type_code]</item>
+                    <item name="dataScope" xsi:type="string">entity_type_code</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>

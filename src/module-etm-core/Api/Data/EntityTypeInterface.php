@@ -40,9 +40,9 @@ interface EntityTypeInterface
 
     public function setAttributeModel($attributeModel);
 
-    public function getTable();
+    public function getEntityTable();
 
-    public function setTable($table);
+    public function setEntityTable($table);
 
     public function getTablePrefix();
 

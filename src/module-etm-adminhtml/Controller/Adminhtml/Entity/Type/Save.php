@@ -2,10 +2,24 @@
 
 namespace Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
 
-use Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type;
+use Magento\Backend\App\Action;
+use Ainnomix\EtmCore\Api\EntityTypeManagementInterface;
+use Ainnomix\EtmAdminhtml\Controller\Adminhtml\Entity\Type as TypeAction;
 
-class Save extends Type
+class Save extends TypeAction
 {
+
+    protected $dataProcessor;
+
+    public function __construct(
+        Action\Context $context,
+        EntityTypeManagementInterface $entityTypeManagement,
+        PostDataProcessor $dataProcessor
+    ) {
+        parent::__construct($context, $entityTypeManagement);
+
+        $this->dataProcessor = $dataProcessor;
+    }
 
     public function execute()
     {
@@ -13,7 +27,9 @@ class Save extends Type
         $resultRedirect = $this->resultRedirectFactory->create();
 
         $entityType = $this->initCurrentEntityType();
-        $entityType->addData($this->getRequest()->getParam('entity_type'));
+        $entityType->addData(
+            $this->dataProcessor->filter($this->getRequest()->getPostValue())
+        );
 
         try {
             $this->entityTypeManagement->save($entityType);

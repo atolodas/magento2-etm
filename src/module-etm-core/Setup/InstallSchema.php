@@ -15,39 +15,36 @@ class InstallSchema implements InstallSchemaInterface
 
         $installer->startSetup();
 
-        $installer->getConnection()->addColumn(
-            $installer->getTable('eav_entity_type'),
-            'entity_type_name',
-            [
-                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                'length' => 50,
-                'nullable' => true,
-                'after' => 'entity_type_code',
-                'comment' => 'Entity Type Name'
-            ]
-        );
-
-        $installer->getConnection()->addColumn(
-            $installer->getTable('eav_entity_type'),
-            'is_custom',
-            [
-                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
-                'unsigned' => true,
-                'nullable' => true,
-                'comment' => 'Is Entity Type Custom'
-            ]
-        );
-
-        $installer->getConnection()->addIndex(
-            $installer->getTable('eav_entity_type'),
-            $installer->getIdxName(
+        $table = $installer->getConnection()
+            ->newTable($installer->getTable('etm_eav_entity_type'))
+            ->addColumn(
+                'entity_type_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                5,
+                ['identity' => false, 'unsigned' => true, 'nullable' => false, 'primary' => true],
+                'Entity Type ID'
+            )
+            ->addColumn(
+                'entity_type_name',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                255,
+                ['nullable' => false],
+                'Entity Type Name'
+            )
+            ->addForeignKey(
+                $installer->getFkName(
+                    $installer->getTable('etm_eav_entity_type'),
+                    'entity_type_id',
+                    $installer->getTable('eav_entity_type'),
+                    'entity_type_id'
+                ),
+                'entity_type_id',
                 $installer->getTable('eav_entity_type'),
-                ['is_custom'],
-                \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_INDEX
-            ),
-            ['is_custom'],
-            \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_INDEX
-        );
+                'entity_type_id'
+            )
+            ->setComment('Additional table for EAV entity type');
+
+        $installer->getConnection()->createTable($table);
 
         $installer->endSetup();
     }

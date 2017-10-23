@@ -18,6 +18,10 @@ class Type extends \Magento\Eav\Model\ResourceModel\Entity\Type
 
     public function isEntityTypeUnique(\Magento\Eav\Model\Entity\Type $entityType)
     {
+        if ($entityType->getEntityTypeId()) {
+            return true;
+        }
+
         return !$this->entityTypeExists($entityType);
     }
 
@@ -40,5 +44,30 @@ class Type extends \Magento\Eav\Model\ResourceModel\Entity\Type
         );
 
         return $connection->fetchRow($select, $binds);
+    }
+
+    protected function _getLoadSelect($field, $value, $object)
+    {
+        $select = parent::_getLoadSelect($field, $value, $object);
+
+        $select->joinInner(
+            ['etm' => $this->getTable('etm_eav_entity_type')],
+            $this->getMainTable() . '.entity_type_id = etm.entity_type_id',
+            ['entity_type_name']
+        );
+
+        return $select;
+    }
+
+    protected function _afterSave(\Magento\Framework\Model\AbstractModel $object)
+    {
+        $data = $this->_prepareDataForTable($object, $this->getTable('etm_eav_entity_type'));
+        $this->getConnection()->insertOnDuplicate(
+            $this->getTable('etm_eav_entity_type'),
+            $data,
+            []
+        );
+
+        return parent::_afterSave($object);
     }
 }

@@ -71,15 +71,7 @@ class Type extends \Magento\Eav\Model\Entity\Type implements EntityTypeInterface
     /**
      * {@inheritdoc}
      */
-    public function getTable()
-    {
-        return $this->getData('entity_table');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setTable($table)
+    public function setEntityTable($table)
     {
         return $this->setData('entity_table', $table);
     }
@@ -224,9 +216,34 @@ class Type extends \Magento\Eav\Model\Entity\Type implements EntityTypeInterface
         return (bool) $this->getData('is_custom');
     }
 
+    public function beforeSave()
+    {
+        if (!$this->getEntityModel()) {
+            $this->setEntityModel(\Magento\Catalog\Model\ResourceModel\Product::class);
+        }
+        if (!$this->getAttributeModel()) {
+            $this->setAttributeModel(\Magento\Catalog\Model\ResourceModel\Eav\Attribute::class);
+        }
+        if (!$this->getEntityTable()) {
+            $this->setEntityTable($this->getEntityTableName());
+        }
+
+        return parent::beforeSave();
+    }
+
+    protected function getEntityTableName()
+    {
+        return sprintf('etm_%s_entity', $this->getEntityTypeCode());
+    }
+
     protected function _getValidationRulesBeforeSave()
     {
         $validator = new \Magento\Framework\Validator\DataObject();
+
+        $stringLengthValidator = new \Zend_Validate_StringLength(['max' => 255]);
+
+        $entityTypeCodeValidator = new \Magento\Framework\Validator\DataObject();
+        $entityTypeCodeValidator->addRule($stringLengthValidator);
 
         $entityTypeCodeRule = new \Zend_Validate_Regex('/^[a-z]+[a-z0-9_]*$/');
         $entityTypeCodeRule->setMessage(
@@ -236,7 +253,14 @@ class Type extends \Magento\Eav\Model\Entity\Type implements EntityTypeInterface
             ),
             \Zend_Validate_Regex::NOT_MATCH
         );
-        $validator->addRule($entityTypeCodeRule, 'entity_type_code');
+        $entityTypeCodeValidator->addRule($entityTypeCodeRule);
+
+        $entityTypeNameValidator = new \Magento\Framework\Validator\DataObject();
+        $entityTypeNameValidator->addRule($stringLengthValidator);
+        $entityTypeNameValidator->addRule(new \Zend_Validate_NotEmpty());
+
+        $validator->addRule($entityTypeCodeValidator, 'entity_type_code');
+        $validator->addRule($entityTypeNameValidator, 'entity_type_name');
 
         return $validator;
     }

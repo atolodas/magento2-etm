@@ -30,19 +30,19 @@ class TypeRepository implements EntityTypeRepositoryInterface
         $this->resource = $resource;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function save(EntityTypeInterface $entity)
     {
-        if (!$entity->getTable()) {
-            $entity->setTable(sprintf('%s_entity', $entity->getEntityTypeCode()));
-        }
-
-        $entity->isCustom(true);
-
         $this->resource->save($entity);
 
         return $entity;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get($entityTypeCode)
     {
         $entity = $this->typeFactory->create();
@@ -55,6 +55,9 @@ class TypeRepository implements EntityTypeRepositoryInterface
         return $entity;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getById($entityTypeId)
     {
         $entity = $this->typeFactory->create();
@@ -67,11 +70,17 @@ class TypeRepository implements EntityTypeRepositoryInterface
         return $entity;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function delete(EntityTypeInterface $entity)
     {
         $this->resource->delete($entity);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function deleteById($entityTypeId)
     {
         $entity = $this->getById($entityTypeId);
